@@ -163,7 +163,19 @@ public class Yaml {
     public void sendMessage(CommandSender commandSender, String path, String[][] replacements, String def) {
         if (fileConfiguration == null) return;
         if (!fileConfiguration.contains(path)) {
-            fileConfiguration.set(path, def);
+            if (javaPlugin.getResource(name + ".yml") != null){
+                Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(javaPlugin.getResource(name + ".yml")), StandardCharsets.UTF_8);
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                if (defConfig.contains(path)) {
+                    if (defConfig.isString(path)) {
+                        fileConfiguration.set(path, defConfig.getString(path));
+                    } else {
+                        fileConfiguration.set(path, defConfig.getStringList(path));
+                    }
+                }
+            } else {
+                fileConfiguration.set(path, def);
+            }
             saveFileConfiguration();
         }
         if (fileConfiguration.isList(path)) {
@@ -234,23 +246,106 @@ public class Yaml {
     // Boolean
     public boolean isBoolean(String path) { return fileConfiguration.isBoolean(path); }
     public boolean getBoolean(String path) {
+        if (!contains(path)) {
+            if (javaPlugin.getResource(name + ".yml") != null){
+                Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(javaPlugin.getResource(name + ".yml")), StandardCharsets.UTF_8);
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                if (defConfig.contains(path)) {
+                    if (defConfig.isBoolean(path)) {
+                        fileConfiguration.set(path, defConfig.getBoolean(path));
+                        saveFileConfiguration();
+                    }
+                }
+            }
+        }
         return fileConfiguration.getBoolean(path);
     }
     public boolean getBoolean(String path, boolean def) {
+        if (!contains(path)) {
+            set(path, def);
+            saveFileConfiguration();
+        }
         return fileConfiguration.getBoolean(path, def);
     }
     // Boolean
     public boolean isInt(String path) { return fileConfiguration.isInt(path); }
-    public int getInt(String path) { return fileConfiguration.getInt(path); }
-    public int getInt(String path, int def) { return fileConfiguration.getInt(path, def); }
+    public int getInt(String path) {
+        if (!contains(path)) {
+            if (javaPlugin.getResource(name + ".yml") != null){
+                Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(javaPlugin.getResource(name + ".yml")), StandardCharsets.UTF_8);
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                if (defConfig.contains(path)) {
+                    if (defConfig.isInt(path)) {
+                        fileConfiguration.set(path, defConfig.getInt(path));
+                        saveFileConfiguration();
+                    }
+                }
+            }
+        }
+        return fileConfiguration.getInt(path);
+    }
+    public int getInt(String path, int def) {
+        if (!contains(path)) {
+            set(path, def);
+            saveFileConfiguration();
+        }
+        return fileConfiguration.getInt(path, def);
+    }
     // Long
     public boolean isLong(String path) { return fileConfiguration.isLong(path); }
-    public long getLong(String path) { return fileConfiguration.getLong(path); }
-    public long getLong(String path, long def) { return fileConfiguration.getLong(path, def); }
+    public long getLong(String path) {
+        if (!contains(path)) {
+            if (javaPlugin.getResource(name + ".yml") != null){
+                Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(javaPlugin.getResource(name + ".yml")), StandardCharsets.UTF_8);
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                if (defConfig.contains(path)) {
+                    if (defConfig.isInt(path)) {
+                        fileConfiguration.set(path, defConfig.getInt(path));
+                        saveFileConfiguration();
+                    }
+                }
+            }
+        }
+        return fileConfiguration.getLong(path);
+    }
+    public long getLong(String path, long def) {
+        if (!contains(path)) {
+            set(path, def);
+            saveFileConfiguration();
+        }
+        return fileConfiguration.getLong(path, def); }
     // String
     public boolean isString(String path) { return fileConfiguration.isString(path); }
-    public String getString(String path) { return fileConfiguration.getString(path); }
-    public String getString(String path, String[][] replacements) { return getString(path, "", replacements); }
+    public String getString(String path) {
+        if (!contains(path)) {
+            if (javaPlugin.getResource(name + ".yml") != null){
+                Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(javaPlugin.getResource(name + ".yml")), StandardCharsets.UTF_8);
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                if (defConfig.contains(path)) {
+                    if (defConfig.isString(path)) {
+                        fileConfiguration.set(path, defConfig.getInt(path));
+                        saveFileConfiguration();
+                    }
+                }
+            }
+        }
+        return fileConfiguration.getString(path);
+    }
+    public String getString(String path, String[][] replacements) {
+        if (!contains(path)) {
+            if (javaPlugin.getResource(name + ".yml") != null){
+                Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(javaPlugin.getResource(name + ".yml")), StandardCharsets.UTF_8);
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                if (defConfig.contains(path)) {
+                    if (defConfig.isString(path)) {
+                        fileConfiguration.set(path, defConfig.getString(path));
+                        saveFileConfiguration();
+                    }
+                }
+            }
+        }
+        return getString(path, "", replacements);
+    }
     public String getString(String path, String def) { return fileConfiguration.getString(path, def); }
     public String getString(String path, String def, String[][] replacements) {
         String text = fileConfiguration.getString(path, def);
@@ -263,8 +358,27 @@ public class Yaml {
     }
     // Double
     public boolean isDouble(String path) { return fileConfiguration.isDouble(path); }
-    public double getDouble(String path) { return fileConfiguration.getDouble(path); }
-    public double getDouble(String path, double def) { return fileConfiguration.getDouble(path, def); }
+    public double getDouble(String path) {
+        if (!contains(path)) {
+            if (javaPlugin.getResource(name + ".yml") != null){
+                Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(javaPlugin.getResource(name + ".yml")), StandardCharsets.UTF_8);
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                if (defConfig.contains(path)) {
+                    if (defConfig.isDouble(path)) {
+                        fileConfiguration.set(path, defConfig.getDouble(path));
+                        saveFileConfiguration();
+                    }
+                }
+            }
+        }
+        return fileConfiguration.getDouble(path);
+    }
+    public double getDouble(String path, double def) {
+        if (!contains(path)) {
+            set(path, def);
+            saveFileConfiguration();
+        }
+        return fileConfiguration.getDouble(path, def); }
 
     // List
     public boolean isList(String path) {

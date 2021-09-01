@@ -1,9 +1,16 @@
 name: EdoQuest
 version: '${project.version}'
 main: org.kayteam.edoquest.EdoQuest
-api-version: 1.17
+api-version: 1.13
 prefix: EdoQuest
-loadbefore: [ Vault ]
-depend: [ Vault ]
-authors: [ SirOswaldo ]
+loadbefore: [Vault]
+depend: [Vault]
+softdepend: [PlaceholderAPI]
+authors: [SirOswaldo]
 website: https://kayteam.org
+commands:
+  EdoQuest:
+    description: ""
+permissions:
+  edoquest.admin:
+    description: ""

@@ -1,0 +1,6 @@
+prefix: "&6&lEdo&e&lQuest"
+edoQuest:
+  noPermission: "%prefix% &fYou don't have permission."
+prestigeEditor:
+  input: "%prefix% &f"
+  tooLong: "%prefix% &f"

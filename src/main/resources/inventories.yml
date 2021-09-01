@@ -1,0 +1,62 @@
+edoQuest:
+  title: "EdoQuest Management"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    close:
+      material: BARRIER
+      name: "&3Close"
+    reload:
+      material: REDSTONE_BLOCK
+      name: "&3Reload"
+    prestigies:
+      material: CHEST
+      name: "&3Prestigies"
+      lore:
+        - "&6"
+        - "&6Ping&e: &e%player_ping%"
+        - "&6"
+        - "&7Left Click to open"
+prestigies:
+  title: "Prestigies"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: CHEST
+      name: "&3Return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+    previousPage:
+      material: ARROW
+      name: "&3Previous Page"
+    createPrestige:
+      material: PAPER
+      name: "&3Create Prestige"
+    nextPage:
+      material: ARROW
+      name: "&3Next Page"
+prestigeEditor:
+  title: "Prestige Editor"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: CHEST
+      name: "&3Return"
+      lore:
+        - "&6"
+        - "&7Left Click to return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+    delete:
+      material: REDSTONE_BLOCK
+      name: "&3Delete"
+      lore:
+        - "&6"
+        - "&7Left Shift Click to delete"

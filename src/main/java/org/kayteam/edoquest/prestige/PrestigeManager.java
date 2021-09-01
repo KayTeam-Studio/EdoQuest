@@ -2,7 +2,7 @@ package org.kayteam.edoquest.prestige;
 
 import org.bukkit.entity.EntityType;
 import org.kayteam.edoquest.EdoQuest;
-import org.kayteam.edoquest.util.yaml.Yaml;
+import org.kayteam.kayteamapi.yaml.Yaml;
 
 import java.util.ArrayList;
 import java.util.HashMap;

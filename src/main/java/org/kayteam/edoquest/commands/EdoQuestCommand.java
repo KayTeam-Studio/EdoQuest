@@ -1,7 +1,10 @@
 package org.kayteam.edoquest.commands;
 
+import org.bukkit.entity.Player;
 import org.kayteam.edoquest.EdoQuest;
-import org.kayteam.edoquest.util.command.SimpleCommand;
+import org.kayteam.edoquest.inventories.EdoQuestInventory;
+import org.kayteam.kayteamapi.command.SimpleCommand;
+import org.kayteam.kayteamapi.yaml.Yaml;
 
 public class EdoQuestCommand extends SimpleCommand {
 
@@ -12,6 +15,13 @@ public class EdoQuestCommand extends SimpleCommand {
         this.plugin = plugin;
     }
 
-
-
+    @Override
+    public void onPlayerExecute(Player player, String[] arguments) {
+        Yaml messages = plugin.getMessages();
+        if (player.hasPermission("edoquest.admin")) {
+            plugin.getInventoryManager().openInventory(player, new EdoQuestInventory(plugin, player));
+        } else {
+            messages.sendMessage(player, "edoQuest.noPermission");
+        }
+    }
 }

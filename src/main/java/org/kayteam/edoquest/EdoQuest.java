@@ -1,11 +1,15 @@
 package org.kayteam.edoquest;
 
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.kayteam.edoquest.commands.EdoQuestCommand;
 import org.kayteam.edoquest.prestige.PrestigeManager;
-import org.kayteam.edoquest.util.kayteam.KayTeam;
-import org.kayteam.edoquest.util.yaml.Yaml;
+import org.kayteam.kayteamapi.BrandSender;
+import org.kayteam.kayteamapi.input.InputManager;
+import org.kayteam.kayteamapi.inventory.InventoryManager;
+import org.kayteam.kayteamapi.yaml.Yaml;
 
 public final class EdoQuest extends JavaPlugin {
 
@@ -25,6 +29,18 @@ public final class EdoQuest extends JavaPlugin {
     private final Yaml prestigies = new Yaml(this, "prestigies");
     public Yaml getPrestigies() {
         return prestigies;
+    }
+
+    // Inventory Manager
+    private final InventoryManager inventoryManager = new InventoryManager(this);
+    public InventoryManager getInventoryManager() {
+        return inventoryManager;
+    }
+
+    // Input Manager
+    private final InputManager inputManager = new InputManager();
+    public InputManager getInputManager() {
+        return inputManager;
     }
 
     // Vault Permission
@@ -50,12 +66,12 @@ public final class EdoQuest extends JavaPlugin {
             return;
         }
         prestigeManager.loadPrestigies();
-        KayTeam.sendBrandMessage(this, "&aEnabled");
+        BrandSender.sendBrandMessage(this, "&aEnabled");
     }
 
     @Override
     public void onDisable() {
-        KayTeam.sendBrandMessage(this, "&cDisabled");
+        BrandSender.sendBrandMessage(this, "&cDisabled");
     }
 
     public void onReload() {
@@ -70,11 +86,13 @@ public final class EdoQuest extends JavaPlugin {
     }
 
     private void registerListeners() {
-
+        PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(inventoryManager, this);
+        pluginManager.registerEvents(inputManager, this);
     }
 
     private void registerCommands() {
-
+        new EdoQuestCommand(this);
     }
 
     private boolean setupPermissions() {

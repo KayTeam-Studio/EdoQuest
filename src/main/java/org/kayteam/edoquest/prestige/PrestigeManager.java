@@ -63,6 +63,7 @@ public class PrestigeManager {
         Yaml prestigies = plugin.getPrestigies();
         prestigies.set(name, null);
         prestigies.saveFileConfiguration();
+        this.prestigies.remove(name);
     }
 
     public void saveAll() {
@@ -94,5 +95,7 @@ public class PrestigeManager {
     public Prestige getPrestige(String name) {
         return prestigies.get(name);
     }
+
+    public void addPrestige(Prestige prestige) { prestigies.put(prestige.getName(), prestige); }
 
 }

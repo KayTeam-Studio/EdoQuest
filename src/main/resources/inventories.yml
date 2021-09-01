@@ -28,6 +28,12 @@ prestigies:
     close:
       material: BARRIER
       name: "&3Close"
+    prestige:
+      material: PAPER
+      name: "%name%"
+      lore:
+        - "&6"
+        - "&7Left Click to edit"
     previousPage:
       material: ARROW
       name: "&3Previous Page"
@@ -79,6 +85,7 @@ prestigeEditor:
       material: PAPER
       name: "&3Kills Requirements"
 prestigeRankSelector:
+  title: "Rank Selector"
   items:
     panel:
       material: GRAY_STAINED_GLASS_PANE

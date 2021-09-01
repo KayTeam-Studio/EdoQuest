@@ -3,6 +3,7 @@ package org.kayteam.edoquest.inventories;
 import org.bukkit.entity.Player;
 import org.kayteam.edoquest.EdoQuest;
 import org.kayteam.edoquest.prestige.Prestige;
+import org.kayteam.kayteamapi.input.inputs.ChatInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
@@ -29,9 +30,8 @@ public class PrestigiesInventory extends InventoryBuilder {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
             if (index < prestigies.size()) {
                 Prestige prestige = plugin.getPrestigeManager().getPrestige(prestigies.get(index));
-                addItem(i, () -> Yaml.replace(inventories.getItemStack("prestigies.items.nextPage"), new String[][] {
-                        {"%name%", prestige.getName()},
-                        {"%displayName%", prestige.getDisplayName()}
+                addItem(i, () -> Yaml.replace(inventories.getItemStack("prestigies.items.prestige"), new String[][] {
+                        {"%name%", prestige.getName()}
                 }));
                 addLeftAction(i, (player1, slot) -> plugin.getInventoryManager().openInventory(player1, new PrestigeEditorInventory(plugin, prestige, player1)));
             }
@@ -44,7 +44,40 @@ public class PrestigiesInventory extends InventoryBuilder {
             }
         }));
         // createPrestige
-        addItem(48, () -> inventories.getItemStack("prestigies.items.createPrestige"));
+        addItem(49, () -> inventories.getItemStack("prestigies.items.createPrestige"));
+        addLeftAction(49, ((player1, i) -> {
+            player1.closeInventory();
+            Yaml messages = plugin.getMessages();
+            messages.sendMessage(player1, "prestigies.createPrestige.input");
+            plugin.getInputManager().addInput(player1, new ChatInput() {
+                @Override
+                public boolean onChatInput(Player player, String input) {
+                    if (!input.contains(" ")) {
+                        if (input.length() < 33) {
+                            if (plugin.getPrestigeManager().getPrestige(input) == null) {
+                                Prestige prestige = new Prestige(input);
+                                plugin.getPrestigeManager().addPrestige(prestige);
+                                plugin.getPrestigeManager().savePrestige(input);
+                                plugin.getInventoryManager().openInventory(player, new PrestigiesInventory(plugin, player, 1));
+                                return true;
+                            } else {
+                                messages.sendMessage(player, "prestigies.createPrestige.alreadyExist", new String[][]{{"%name%", input}});
+                            }
+                        } else {
+                            messages.sendMessage(player, "prestigies.createPrestige.tooLong");
+                        }
+                    } else {
+                        messages.sendMessage(player, "prestigies.createPrestige.containSpace");
+                    }
+                    return false;
+                }
+
+                @Override
+                public void onPlayerSneak(Player player) {
+                    plugin.getInventoryManager().openInventory(player, new PrestigiesInventory(plugin, player, 1));
+                }
+            });
+        }));
         // Next Page
         addItem(53, () -> inventories.getItemStack("prestigies.items.nextPage"));
         addLeftAction(53, ((player1, i) -> {

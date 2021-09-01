@@ -12,7 +12,7 @@ public class PrestigeRankSelectorInventory extends InventoryBuilder {
         super(plugin.getInventories().getString("prestigeRankSelector.title"), 6);
         final int page1 = page;
         Yaml inventories = plugin.getInventories();
-        for (int i = 1; i < 8; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
+        for (int i = 0; i < 9; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
         for (int i = 46; i < 53; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
         // Return :D
         addItem(0, () -> inventories.getItemStack("prestigeRankSelector.items.return"));

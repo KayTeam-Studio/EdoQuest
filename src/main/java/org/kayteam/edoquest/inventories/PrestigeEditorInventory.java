@@ -15,7 +15,7 @@ public class PrestigeEditorInventory extends InventoryBuilder {
         fillItem(() -> inventories.getItemStack("prestigeEditor.items.panel"));
         // Return :D
         addItem(37, () -> inventories.getItemStack("prestigeEditor.items.return"));
-        addLeftAction(37, ((player1, i) -> plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1))));
+        addLeftAction(37, ((player1, i) -> plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, 1))));
         // Close :D
         addItem(40, () -> inventories.getItemStack("prestigeEditor.items.close"));
         addLeftAction(40, ((player1, i) -> player.closeInventory()));
@@ -23,10 +23,10 @@ public class PrestigeEditorInventory extends InventoryBuilder {
         addItem(43, () -> inventories.getItemStack("prestigeEditor.items.delete"));
         addLeftShiftAction(43, ((player1, i) -> {
             plugin.getPrestigeManager().deletePrestige(prestige.getName());
-            plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1));
+            plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, 1));
         }));
         // DisplayName :D
-        addItem(10, () -> inventories.getItemStack("prestigeEditor.items.displayName"));
+        addItem(10, () -> Yaml.replace(inventories.getItemStack("prestigeEditor.items.displayName"), new String[][] {{"%displayName%", prestige.getDisplayName()}}));
         addLeftAction(10, ((player1, i) -> {
             player1.closeInventory();
             Yaml messages = plugin.getMessages();
@@ -51,15 +51,14 @@ public class PrestigeEditorInventory extends InventoryBuilder {
                 }
             });
         }));
-        // RankToPrestige
-        addItem(11, () -> inventories.getItemStack("prestigeEditor.items.rankToPrestige"));
+        // RankToPrestige :D
+        addItem(11, () -> Yaml.replace(inventories.getItemStack("prestigeEditor.items.prestigeRank"), new String[][] {{"%prestigeRank%", prestige.getPrestigeRank()}}));
         addLeftAction(11, ((player1, i) -> {
-
+            plugin.getInventoryManager().openInventory(player, new PrestigeRankSelectorInventory(plugin, prestige, player, 1));
         }));
         // RequirementRank
         addItem(15, () -> inventories.getItemStack("prestigeEditor.items.requirementRank"));
         addLeftAction(15, ((player1, i) -> {
-
         }));
         // RequirementKills
         addItem(16, () -> inventories.getItemStack("prestigeEditor.items.requirementKills"));

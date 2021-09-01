@@ -60,3 +60,46 @@ prestigeEditor:
       lore:
         - "&6"
         - "&7Left Shift Click to delete"
+    displayName:
+      material: PAPER
+      name: "&3DisplayName"
+      lore:
+        - "&6"
+        - "&6Current&3: %displayName%"
+    prestigeRank:
+      material: PAPER
+      name: "&3Rank to Prestige"
+      lore:
+        - "&6"
+        - "&6Rank&3: &3%prestigeRank%"
+    requirementRank:
+      material: PAPER
+      name: "&3Rank Requirement"
+    requirementKills:
+      material: PAPER
+      name: "&3Kills Requirements"
+prestigeRankSelector:
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: CHEST
+      name: "&3Return"
+      lore:
+        - "&6"
+        - "&7Left Click to return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+    rank:
+      material: PAPER
+      name: "&f%rank%"
+    previousPage:
+      material: ARROW
+      name: "&3Previous Page"
+    nextPage:
+      material: ARROW
+      name: "&3Next Page"

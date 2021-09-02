@@ -8,10 +8,7 @@ import org.kayteam.edoquest.EdoQuest;
 import org.kayteam.edoquest.events.QuestCompleteEvent;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PrestigeManager {
 
@@ -22,6 +19,7 @@ public class PrestigeManager {
     private final EdoQuest plugin;
     private final HashMap<String, Prestige> prestigies = new HashMap<>();
     private final HashMap<Player, Prestige> playerData = new HashMap<>();
+    private final List<Prestige> prestigeList = new ArrayList<>();
 
     public void loadPrestigies() {
         Yaml prestigies = plugin.getPrestigies();
@@ -54,9 +52,13 @@ public class PrestigeManager {
                         }
                     }
                 }
-                this.prestigies.put(name, prestige);
+                this.prestigeList.add(prestige);
                 Bukkit.getLogger().info("LOADED "+prestige.toString());
             }
+        }
+        Collections.sort(prestigeList);
+        for(Prestige p : prestigeList){
+            this.prestigies.put(p.getName(), p);
         }
     }
 

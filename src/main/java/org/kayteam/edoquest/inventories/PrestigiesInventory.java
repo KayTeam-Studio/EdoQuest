@@ -36,16 +36,18 @@ public class PrestigiesInventory extends InventoryBuilder {
                 }));
                 addLeftAction(i, (player1, slot) -> {
                     int position = prestige.getPosition();
-                    if (position > 2) {
+                    if (position > 1) {
                         prestige.setPosition(position - 1);
                         plugin.getPrestigeManager().sortPrestigies();
+                        plugin.getPrestigeManager().savePrestige(prestige.getName());
                         plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, page));
                     }
                 });
                 addRightAction(i, (player1, slot) -> {
                     int position = prestige.getPosition();
-                    prestige.setPosition(position - 1);
+                    prestige.setPosition(position + 1);
                     plugin.getPrestigeManager().sortPrestigies();
+                    plugin.getPrestigeManager().savePrestige(prestige.getName());
                     plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, page));
                 });
                 addLeftShiftAction(i, (player1, slot) -> {

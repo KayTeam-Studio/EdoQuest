@@ -40,6 +40,11 @@ public class PrestigeManager {
                         prestige.setDisplayName(prestigies.getString(name + ".display.name", name));
                     }
                 }
+                if (prestigies.contains(name + ".position")) {
+                    if (prestigies.isInt(name + ".position")) {
+                        prestige.setPosition(prestigies.getInt(name + ".position"));
+                    }
+                }
                 if (prestigies.contains(name + ".requirements.kills")) {
                     if (prestigies.isList(name + ".requirements.kills")) {
                         List<String> kills = prestigies.getFileConfiguration().getStringList(name + ".requirements.kills");
@@ -157,6 +162,7 @@ public class PrestigeManager {
         Yaml prestigies = plugin.getPrestigies();
         Prestige prestige = this.prestigies.get(name);
         prestigies.set(name + ".display.name", prestige.getDisplayName());
+        prestigies.set(name + ".position", prestige.getPosition());
         prestigies.set(name + ".prestigeRank", prestige.getPrestigeRank());
         List<String> kills = new ArrayList<>();
         for (EntityType entityType:prestige.getKillsRequirement().getEntities()) {
@@ -178,6 +184,10 @@ public class PrestigeManager {
         return prestigies.get(name);
     }
 
-    public void addPrestige(Prestige prestige) { prestigies.put(prestige.getName(), prestige); }
+    public void addPrestige(Prestige prestige) {
+        prestigies.put(prestige.getName(), prestige);
+        prestigeList.add(prestige);
+        sortPrestigies();
+    }
 
 }

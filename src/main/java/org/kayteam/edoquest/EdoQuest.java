@@ -8,6 +8,7 @@ import org.kayteam.edoquest.commands.EdoQuestCommand;
 import org.kayteam.edoquest.listeners.EntityDeathListener;
 import org.kayteam.edoquest.listeners.PlayerJoinListener;
 import org.kayteam.edoquest.listeners.QuestCompleteListener;
+import org.kayteam.edoquest.placeholderapi.EdoQuestExpansion;
 import org.kayteam.edoquest.prestige.PrestigeManager;
 import org.kayteam.kayteamapi.BrandSender;
 import org.kayteam.kayteamapi.input.InputManager;
@@ -70,6 +71,7 @@ public final class EdoQuest extends JavaPlugin {
         }
         prestigeManager.loadPrestigies();
         prestigeManager.loadPlayersData();
+        new EdoQuestExpansion(this).register();
         BrandSender.sendBrandMessage(this, "&aEnabled");
     }
 

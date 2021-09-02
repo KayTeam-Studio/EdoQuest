@@ -162,6 +162,10 @@ public class PrestigeManager {
         return new ArrayList<>(this.prestigies.keySet());
     }
 
+    public HashMap<String, Prestige> getPrestigesMap(){
+        return prestigies;
+    }
+
     public Prestige getPrestige(String name) {
         return prestigies.get(name);
     }

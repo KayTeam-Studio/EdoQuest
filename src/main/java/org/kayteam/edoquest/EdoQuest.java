@@ -47,16 +47,16 @@ public final class EdoQuest extends JavaPlugin {
         return inputManager;
     }
 
-    // Vault Permission
-    private static Permission permission;
-    public static Permission getPermissions() {
-        return permission;
-    }
-
     // Prestige Manager
     private final PrestigeManager prestigeManager = new PrestigeManager(this);
     public PrestigeManager getPrestigeManager() {
         return prestigeManager;
+    }
+
+    // Vault Permission
+    private static Permission permission;
+    public static Permission getPermissions() {
+        return permission;
     }
 
     @Override

@@ -24,4 +24,5 @@ public class EdoQuestCommand extends SimpleCommand {
             messages.sendMessage(player, "edoQuest.noPermission");
         }
     }
+
 }

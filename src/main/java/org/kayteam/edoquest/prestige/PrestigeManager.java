@@ -31,6 +31,18 @@ public class PrestigeManager {
 
     public void sortPrestigies() {
         Collections.sort(prestigeList);
+        for(int i = 0; i < prestigeList.size(); i++) {
+            Prestige prestige = prestigeList.get(i);
+            if (prestige.getPosition() == i) {
+                if (i + 1 < prestigeList.size()) {
+                    Prestige next = prestigeList.get(i + 1);
+                    if (next.getPosition() == i) {
+                        next.setPosition(i + 1);
+                        savePrestige(next.getName());
+                    }
+                }
+            }
+        }
     }
 
     public void loadPrestigies() {
@@ -69,11 +81,11 @@ public class PrestigeManager {
                         }
                     }
                 }
-                this.prestigeList.add(prestige);
+                prestigeList.add(prestige);
                 Bukkit.getLogger().info("LOADED "+prestige.toString());
             }
         }
-        Collections.sort(prestigeList);
+        sortPrestigies();
         for(Prestige p : prestigeList){
             this.prestigies.put(p.getName(), p);
         }

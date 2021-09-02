@@ -30,7 +30,7 @@ public class PrestigeEditorInventory extends InventoryBuilder {
         addLeftAction(10, ((player1, i) -> {
             player1.closeInventory();
             Yaml messages = plugin.getMessages();
-            messages.sendMessage(player, "prestigeEditor.input");
+            messages.sendMessage(player, "prestigeEditor.displayName.input");
             plugin.getInputManager().addInput(player1, new ChatInput() {
                 @Override
                 public boolean onChatInput(Player player, String input) {
@@ -40,7 +40,7 @@ public class PrestigeEditorInventory extends InventoryBuilder {
                         plugin.getInventoryManager().openInventory(player, new PrestigeEditorInventory(plugin, prestige, player));
                         return true;
                     } else {
-                        messages.sendMessage(player, "prestigeEditor.tooLong");
+                        messages.sendMessage(player, "prestigeEditor.displayName.tooLong");
                     }
                     return false;
                 }

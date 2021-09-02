@@ -22,7 +22,6 @@ public class QuestCompleteListener implements Listener {
         String group = event.getPrestige().getPrestigeRank();
         try{
             EdoQuest.getPermissions().playerAddGroup(event.getPlayer(), group);
-            Bukkit.broadcastMessage("El jugador "+event.getPlayer().getName()+" subió al prestigio "+event.getPrestige().getDisplayName());
         }catch (Exception e){
             Bukkit.getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c[EdoQuest] An error has ocurred trying to give &f"+group+" &cto &f"+event.getPlayer().getName()));
         }

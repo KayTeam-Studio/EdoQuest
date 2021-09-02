@@ -25,6 +25,10 @@ public class PrestigeManager {
         return prestigeList;
     }
 
+    public HashMap<Player, Prestige> getPlayerData() {
+        return playerData;
+    }
+
     public void sortPrestigies() {
         Collections.sort(prestigeList);
     }
@@ -96,36 +100,6 @@ public class PrestigeManager {
             }
         });
         thread.start();
-    }
-
-    public void checkNextPrestige(Player player){
-        Prestige actualPrestige = getPlayerPrestige(player);
-        Prestige nextPrestige;
-        ArrayList<Prestige> prestigiesArrayList = new ArrayList<>(this.prestigies.values());
-        if(prestigiesArrayList.size()<prestigiesArrayList.indexOf(actualPrestige)+1){
-            if(actualPrestige != null){
-                try{
-                    nextPrestige = prestigiesArrayList.get(prestigiesArrayList.indexOf(actualPrestige)+1);
-                }catch (Exception e){
-                    return;
-                }
-            }else{
-                nextPrestige = prestigiesArrayList.get(0);
-            }
-            boolean completed = true;
-            for(EntityType entityType : nextPrestige.getKillsRequirement().getEntities()){
-                int entityKillsNeeded = nextPrestige.getKillsRequirement().getAmount(entityType);
-                if((player.getStatistic(Statistic.KILL_ENTITY, entityType)+1) < entityKillsNeeded){
-                    completed = false;
-                    break;
-                }
-            }
-            if(completed){
-                actualPrestige = nextPrestige;
-                plugin.getServer().getPluginManager().callEvent(new QuestCompleteEvent(player, nextPrestige));
-            }
-            playerData.put(player, actualPrestige);
-        }
     }
 
     public void loadPlayersData(){

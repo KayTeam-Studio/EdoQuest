@@ -29,20 +29,24 @@ public class PrestigeManager {
         return playerData;
     }
 
+    public int getListIndex(Prestige prestige) {
+        return prestigeList.indexOf(prestige);
+    }
+
+    public void movePrestige(Prestige prestige, int index) {
+        prestigeList.remove(prestige);
+        prestigeList.add(index, prestige);
+        savePrestige(prestige.getName());
+    }
+
     public void sortPrestigies() {
-        Collections.sort(prestigeList);
         for(int i = 0; i < prestigeList.size(); i++) {
             Prestige prestige = prestigeList.get(i);
-            if (prestige.getPosition() == i) {
-                if (i + 1 < prestigeList.size()) {
-                    Prestige next = prestigeList.get(i + 1);
-                    if (next.getPosition() == i) {
-                        next.setPosition(i + 1);
-                        savePrestige(next.getName());
-                    }
-                }
+            if (prestige.getPosition() != i) {
+                prestige.setPosition(i);
             }
         }
+        Collections.sort(prestigeList);
     }
 
     public void loadPrestigies() {

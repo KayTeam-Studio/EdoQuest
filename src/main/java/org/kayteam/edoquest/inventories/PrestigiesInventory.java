@@ -35,20 +35,24 @@ public class PrestigiesInventory extends InventoryBuilder {
                         {"%position%", prestige.getPosition() + ""}
                 }));
                 addLeftAction(i, (player1, slot) -> {
-                    int position = prestige.getPosition();
-                    if (position > 1) {
+                    int position = plugin.getPrestigeManager().getListIndex(prestige);
+                    if (position > 0) {
                         prestige.setPosition(position - 1);
+                        plugin.getPrestigeManager().movePrestige(prestige, position - 1);
                         plugin.getPrestigeManager().sortPrestigies();
                         plugin.getPrestigeManager().savePrestige(prestige.getName());
                         plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, page));
                     }
                 });
                 addRightAction(i, (player1, slot) -> {
-                    int position = prestige.getPosition();
-                    prestige.setPosition(position + 1);
-                    plugin.getPrestigeManager().sortPrestigies();
-                    plugin.getPrestigeManager().savePrestige(prestige.getName());
-                    plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, page));
+                    int position = plugin.getPrestigeManager().getListIndex(prestige);
+                    if (position + 1 != plugin.getPrestigeManager().getPrestigeList().size()) {
+                        prestige.setPosition(position + 1);
+                        plugin.getPrestigeManager().movePrestige(prestige, position + 1);
+                        plugin.getPrestigeManager().sortPrestigies();
+                        plugin.getPrestigeManager().savePrestige(prestige.getName());
+                        plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, page));
+                    }
                 });
                 addLeftShiftAction(i, (player1, slot) -> {
                     plugin.getInventoryManager().openInventory(player1, new PrestigeEditorInventory(plugin, prestige, player1));

@@ -1,6 +1,7 @@
 questComplete:
   sound: UI_TOAST_CHALLENGE_COMPLETE
   title:
+    enabled: true
     title: "&2&oCongratulations!"
     subtitle: "&fYou have reached prestige %prestige%"
   messages:

@@ -27,12 +27,14 @@ public class QuestCompleteListener implements Listener {
             EdoQuest.getPermissions().playerAddGroup(player, group);
             player.playSound(player.getLocation(),
                     Sound.valueOf(plugin.getSettings().getString("questComplete.sound")), 1, 1);
-            player.sendTitle(ChatColor.translateAlternateColorCodes('&',
-                            plugin.getSettings().getString("questComplete.title.title",
-                            new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})),
-                    ChatColor.translateAlternateColorCodes('&',
-                            plugin.getSettings().getString("questComplete.title.subtitle",
-                            new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})));
+            if(plugin.getSettings().getBoolean("questComplete.title.enabled")){
+                player.sendTitle(ChatColor.translateAlternateColorCodes('&',
+                                plugin.getSettings().getString("questComplete.title.title",
+                                new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})),
+                        ChatColor.translateAlternateColorCodes('&',
+                                plugin.getSettings().getString("questComplete.title.subtitle",
+                                new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})));
+            }
             plugin.getSettings().sendMessage(player, "questComplete.messages",
                     new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}});
         }catch (Exception e){

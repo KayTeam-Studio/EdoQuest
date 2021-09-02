@@ -1,6 +1,7 @@
 package org.kayteam.edoquest.placeholderapi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.kayteam.edoquest.EdoQuest;
@@ -34,10 +35,23 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         if("next_prestige".equals(params)){
-            ArrayList prestiges = new ArrayList<>(plugin.getPrestigeManager().getPrestigiesMap().values());
-            return ((Prestige)prestiges.get(prestiges.indexOf(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()))+1)).getDisplayName();
+            try{
+                ArrayList<Prestige> prestiges = new ArrayList<>(plugin.getPrestigeManager().getPrestigiesMap().values());
+                int nextPrestigeIndex = prestiges.indexOf(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()))+1;
+                if(nextPrestigeIndex <= prestiges.size()){
+                    return ChatColor.translateAlternateColorCodes('&', ((Prestige)prestiges.get(nextPrestigeIndex)).getDisplayName());
+                }else{
+                    return ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("placeholders.maxPrestigeReached"));
+                }
+            }catch (Exception e){
+                return "Error.";
+            }
         }else if("display_name".equals(params)){
-            return plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()).getDisplayName();
+            try{
+                return ChatColor.translateAlternateColorCodes('&', plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()).getDisplayName());
+            }catch (Exception e){
+                return "Error.";
+            }
         }else{
             return "Invalid.";
         }

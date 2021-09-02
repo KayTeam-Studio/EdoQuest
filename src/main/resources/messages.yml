@@ -8,8 +8,9 @@ prestigies:
     tooLong: "%prefix% &fThe name is too long. Try again!"
     alreadyExist: "%prefix% &fThe prestige &3%name%&f already exist. Try again!"
 prestigeEditor:
-  input: "%prefix% &f"
-  tooLong: "%prefix% &f"
+  displayName:
+    input: "%prefix% &fInput the display-name in the chat, to cancel press SHIFT."
+    tooLong: "%prefix% &fEntered display-name is too long, max amount of characters is 32."
 killsRequirements:
   input: "%prefix% &fInput the amount in the chat, to cancel press SHIFT."
   invalidNumber: "%prefix% &fThe number is invalid, try again!"

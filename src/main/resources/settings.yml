@@ -1,3 +1,5 @@
+placeholders:
+  maxPrestigeReached: "&7Max rank reached"
 questComplete:
   sound: UI_TOAST_CHALLENGE_COMPLETE
   title:

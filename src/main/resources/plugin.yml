@@ -6,7 +6,7 @@ prefix: EdoQuest
 loadbefore: [Vault]
 depend: [Vault]
 softdepend: [PlaceholderAPI]
-authors: [SirOswaldo]
+authors: [SirOswaldo, segu23]
 website: https://kayteam.org
 commands:
   EdoQuest:

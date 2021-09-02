@@ -2,6 +2,8 @@ package org.kayteam.edoquest.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.kayteam.edoquest.EdoQuest;
@@ -19,11 +21,22 @@ public class QuestCompleteListener implements Listener {
 
     @EventHandler
     public void onQuestComplete(QuestCompleteEvent event){
+        Player player = event.getPlayer();
         String group = event.getPrestige().getPrestigeRank();
         try{
-            EdoQuest.getPermissions().playerAddGroup(event.getPlayer(), group);
+            EdoQuest.getPermissions().playerAddGroup(player, group);
+            player.playSound(player.getLocation(),
+                    Sound.valueOf(plugin.getSettings().getString("questComplete.sound")), 1, 1);
+            player.sendTitle(ChatColor.translateAlternateColorCodes('&',
+                            plugin.getSettings().getString("questComplete.title.title",
+                            new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})),
+                    ChatColor.translateAlternateColorCodes('&',
+                            plugin.getSettings().getString("questComplete.title.subtitle",
+                            new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})));
+            plugin.getSettings().sendMessage(player, "questComplete.messages",
+                    new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}});
         }catch (Exception e){
-            Bukkit.getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c[EdoQuest] An error has ocurred trying to give &f"+group+" &cto &f"+event.getPlayer().getName()));
+            Bukkit.getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c[EdoQuest] An error has ocurred trying to give &f"+group+" &cto &f"+player.getName()));
         }
     }
 }

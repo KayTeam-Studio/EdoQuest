@@ -1,0 +1,10 @@
+questComplete:
+  sound: UI_TOAST_CHALLENGE_COMPLETE
+  title:
+    title: "&2&oCongratulations!"
+    subtitle: "&fYou have reached prestige %prestige%"
+  messages:
+    - ""
+    - " &2&oCongratulations!"
+    - " &oYou have reached prestige %prestige%"
+    - ""

@@ -1,7 +1,6 @@
 package org.kayteam.edoquest.prestige;
 
 import org.kayteam.edoquest.prestige.requirement.KillsRequirement;
-import org.kayteam.edoquest.prestige.requirement.RankRequirement;
 
 public class Prestige {
 
@@ -28,11 +27,6 @@ public class Prestige {
     }
     public String getPrestigeRank() {
         return prestigeRank;
-    }
-
-    private final RankRequirement rankRequirement = new RankRequirement();
-    public RankRequirement getRankRequirement() {
-        return rankRequirement;
     }
 
     private final KillsRequirement killsRequirement = new KillsRequirement();

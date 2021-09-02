@@ -5,6 +5,9 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kayteam.edoquest.commands.EdoQuestCommand;
+import org.kayteam.edoquest.listeners.EntityDeathListener;
+import org.kayteam.edoquest.listeners.PlayerJoinListener;
+import org.kayteam.edoquest.listeners.QuestCompleteListener;
 import org.kayteam.edoquest.prestige.PrestigeManager;
 import org.kayteam.kayteamapi.BrandSender;
 import org.kayteam.kayteamapi.input.InputManager;
@@ -26,7 +29,7 @@ public final class EdoQuest extends JavaPlugin {
     public Yaml getInventories() {
         return inventories;
     }
-    private final Yaml prestigies = new Yaml(this, "prestigies");
+    private final Yaml prestigies = new Yaml(this, "prestiges");
     public Yaml getPrestigies() {
         return prestigies;
     }
@@ -66,6 +69,7 @@ public final class EdoQuest extends JavaPlugin {
             return;
         }
         prestigeManager.loadPrestigies();
+        prestigeManager.loadPlayersData();
         BrandSender.sendBrandMessage(this, "&aEnabled");
     }
 
@@ -89,6 +93,9 @@ public final class EdoQuest extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(inventoryManager, this);
         pluginManager.registerEvents(inputManager, this);
+        pluginManager.registerEvents(new EntityDeathListener(this), this);
+        pluginManager.registerEvents(new PlayerJoinListener(this), this);
+        pluginManager.registerEvents(new QuestCompleteListener(this), this);
     }
 
     private void registerCommands() {

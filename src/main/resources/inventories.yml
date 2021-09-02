@@ -28,6 +28,12 @@ prestigies:
     close:
       material: BARRIER
       name: "&3Close"
+    prestige:
+      material: PAPER
+      name: "%name%"
+      lore:
+        - "&6"
+        - "&7Left Click to edit"
     previousPage:
       material: ARROW
       name: "&3Previous Page"
@@ -79,6 +85,7 @@ prestigeEditor:
       material: PAPER
       name: "&3Kills Requirements"
 prestigeRankSelector:
+  title: "Rank Selector"
   items:
     panel:
       material: GRAY_STAINED_GLASS_PANE
@@ -97,6 +104,38 @@ prestigeRankSelector:
     rank:
       material: PAPER
       name: "&f%rank%"
+    previousPage:
+      material: ARROW
+      name: "&3Previous Page"
+    nextPage:
+      material: ARROW
+      name: "&3Next Page"
+killsRequirement:
+  title: "Rank Selector"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: CHEST
+      name: "&3Return"
+      lore:
+        - "&6"
+        - "&7Left Click to return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+    entity:
+      material: PAPER
+      name: "&f%entityType%"
+      lore:
+        - "&6"
+        - "&6Kills Amount&e: &f%killsAmount%"
+        - "&6"
+        - "&7Left Click to change kills amount"
+        - "&7Right Click to remove"
     previousPage:
       material: ARROW
       name: "&3Previous Page"

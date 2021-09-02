@@ -12,7 +12,7 @@ public class KillsRequirement extends Requirement{
         super("kills");
     }
 
-    private HashMap<EntityType, Integer> entities = new HashMap<>();
+    private HashMap<EntityType, Integer> entities;
     public List<EntityType> getEntities() {
         return new ArrayList<>(entities.keySet());
     }

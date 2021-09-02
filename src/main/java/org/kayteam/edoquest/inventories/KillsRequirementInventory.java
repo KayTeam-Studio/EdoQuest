@@ -20,10 +20,10 @@ public class KillsRequirementInventory extends InventoryBuilder {
         for (int i = 46; i < 53; i++) addItem(i, () -> inventories.getItemStack("killsRequirement.items.panel"));
         // Return :D
         addItem(0, () -> inventories.getItemStack("killsRequirement.items.return"));
-        addLeftAction(37, ((player1, i) -> plugin.getInventoryManager().openInventory(player1, new PrestigeEditorInventory(plugin,prestige, player1))));
+        addLeftAction(0, ((player1, i) -> plugin.getInventoryManager().openInventory(player1, new PrestigeEditorInventory(plugin,prestige, player1))));
         // Close :D
         addItem(8, () -> inventories.getItemStack("killsRequirement.items.close"));
-        addLeftAction(40, ((player1, i) -> player.closeInventory()));
+        addLeftAction(8, ((player1, i) -> player.closeInventory()));
         // Entities
         List<EntityType> entityTypes = prestige.getKillsRequirement().getEntities();
         for (int i = 9; i < 45; i++) {

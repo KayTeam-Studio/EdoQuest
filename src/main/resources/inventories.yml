@@ -115,7 +115,7 @@ prestigeRankSelector:
       material: ARROW
       name: "&3Next Page"
 killsRequirement:
-  title: "Rank Selector"
+  title: "Kills Requirement"
   items:
     panel:
       material: GRAY_STAINED_GLASS_PANE
@@ -143,6 +143,9 @@ killsRequirement:
     previousPage:
       material: ARROW
       name: "&3Previous Page"
+    addEntity:
+      material: PAPER
+      name: "&3Add Entity"
     nextPage:
       material: ARROW
       name: "&3Next Page"

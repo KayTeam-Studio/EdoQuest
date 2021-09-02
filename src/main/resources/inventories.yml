@@ -33,7 +33,11 @@ prestigies:
       name: "%name%"
       lore:
         - "&6"
-        - "&7Left Click to edit"
+        - "&6Position&e: &f%position%"
+        - "&6"
+        - "&7Left Shift Click to edit"
+        - "&7Left Click to move left"
+        - "&7Left Click to move right"
     previousPage:
       material: ARROW
       name: "&3Previous Page"

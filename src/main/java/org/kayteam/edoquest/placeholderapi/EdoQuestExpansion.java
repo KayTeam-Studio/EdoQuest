@@ -34,7 +34,7 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         if("next_prestige".equals(params)){
-            ArrayList prestiges = new ArrayList<>(plugin.getPrestigeManager().getPrestigesMap().values());
+            ArrayList prestiges = new ArrayList<>(plugin.getPrestigeManager().getPrestigiesMap().values());
             return ((Prestige)prestiges.get(prestiges.indexOf(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()))+1)).getDisplayName();
         }else if("display_name".equals(params)){
             return plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()).getDisplayName();

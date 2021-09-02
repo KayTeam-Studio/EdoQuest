@@ -5,17 +5,15 @@ import org.kayteam.edoquest.prestige.requirement.KillsRequirement;
 
 public class Prestige implements Comparable<Prestige> {
 
+    private final String name;
+    private int position = 1;
+    private String displayName = "";
+    private String prestigeRank = "";
+    private final KillsRequirement killsRequirement = new KillsRequirement();
+
     public Prestige(String name) {
         this.name = name;
     }
-
-    private final String name;
-    private int position = 0;
-    private String displayName = "";
-    private String prestigeRank = "";
-
-    private final KillsRequirement killsRequirement = new KillsRequirement();
-
 
     public String getName() {
         return name;

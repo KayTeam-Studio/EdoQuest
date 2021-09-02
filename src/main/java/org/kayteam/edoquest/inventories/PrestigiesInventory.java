@@ -25,15 +25,32 @@ public class PrestigiesInventory extends InventoryBuilder {
         addItem(8, () -> inventories.getItemStack("prestigies.items.close"));
         addLeftAction(8, (player1, slot) -> player.closeInventory());
         // Prestigies
-        List<String> prestigies = plugin.getPrestigeManager().getPrestigies();
+        List<Prestige> prestigies = plugin.getPrestigeManager().getPrestigeList();
         for (int i = 9; i < 45; i++) {
             int index = ((page * (4 * 9)) - (4 * 9)) + (i - 9);
             if (index < prestigies.size()) {
-                Prestige prestige = plugin.getPrestigeManager().getPrestige(prestigies.get(index));
+                Prestige prestige = prestigies.get(index);
                 addItem(i, () -> Yaml.replace(inventories.getItemStack("prestigies.items.prestige"), new String[][] {
-                        {"%name%", prestige.getName()}
+                        {"%name%", prestige.getName()},
+                        {"%position%", prestige.getPosition() + ""}
                 }));
-                addLeftAction(i, (player1, slot) -> plugin.getInventoryManager().openInventory(player1, new PrestigeEditorInventory(plugin, prestige, player1)));
+                addLeftAction(i, (player1, slot) -> {
+                    int position = prestige.getPosition();
+                    if (position > 2) {
+                        prestige.setPosition(position - 1);
+                        plugin.getPrestigeManager().sortPrestigies();
+                        plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, page));
+                    }
+                });
+                addRightAction(i, (player1, slot) -> {
+                    int position = prestige.getPosition();
+                    prestige.setPosition(position - 1);
+                    plugin.getPrestigeManager().sortPrestigies();
+                    plugin.getInventoryManager().openInventory(player1, new PrestigiesInventory(plugin, player1, page));
+                });
+                addLeftShiftAction(i, (player1, slot) -> {
+                    plugin.getInventoryManager().openInventory(player1, new PrestigeEditorInventory(plugin, prestige, player1));
+                });
             }
         }
         // Previous Page

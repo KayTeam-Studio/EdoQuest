@@ -21,6 +21,14 @@ public class PrestigeManager {
     private final HashMap<Player, Prestige> playerData = new HashMap<>();
     private final List<Prestige> prestigeList = new ArrayList<>();
 
+    public List<Prestige> getPrestigeList() {
+        return prestigeList;
+    }
+
+    public void sortPrestigies() {
+        Collections.sort(prestigeList);
+    }
+
     public void loadPrestigies() {
         Yaml prestigies = plugin.getPrestigies();
         Set<String> names = prestigies.getFileConfiguration().getKeys(false);
@@ -63,42 +71,41 @@ public class PrestigeManager {
     }
 
     public void loadPlayerPrestige(Player player){
-        Thread thread = new Thread(){
-            public void run(){
-                Prestige playerPrestige = null;
-                for(Prestige prestige : prestigies.values()){
-                    boolean completed = true;
-                    for(EntityType entityType : prestige.getKillsRequirement().getEntities()){
-                        int entityKillsNeeded = prestige.getKillsRequirement().getAmount(entityType);
-                        if(player.getStatistic(Statistic.KILL_ENTITY, entityType) < entityKillsNeeded){
-                            completed = false;
-                            break;
-                        }
-                    }
-                    if(completed){
-                        playerPrestige = prestige;
-                        playerData.put(player, playerPrestige);
-                    }else{
+        Thread thread = new Thread(() -> {
+            Prestige playerPrestige = null;
+            for(Prestige prestige : prestigies.values()){
+                boolean completed = true;
+                for(EntityType entityType : prestige.getKillsRequirement().getEntities()){
+                    int entityKillsNeeded = prestige.getKillsRequirement().getAmount(entityType);
+                    if(player.getStatistic(Statistic.KILL_ENTITY, entityType) < entityKillsNeeded){
+                        completed = false;
                         break;
                     }
                 }
-            };
-        };
+                if(completed){
+                    playerPrestige = prestige;
+                    playerData.put(player, playerPrestige);
+                }else{
+                    break;
+                }
+            }
+        });
         thread.start();
     }
 
     public void checkNextPrestige(Player player){
         Prestige actualPrestige = getPlayerPrestige(player);
         Prestige nextPrestige;
-        if(prestigeList.size()<prestigeList.indexOf(actualPrestige)+1){
+        ArrayList<Prestige> prestigiesArrayList = new ArrayList<>(this.prestigies.values());
+        if(prestigiesArrayList.size()<prestigiesArrayList.indexOf(actualPrestige)+1){
             if(actualPrestige != null){
                 try{
-                    nextPrestige = prestigeList.get(prestigeList.indexOf(actualPrestige)+1);
+                    nextPrestige = prestigiesArrayList.get(prestigiesArrayList.indexOf(actualPrestige)+1);
                 }catch (Exception e){
                     return;
                 }
             }else{
-                nextPrestige = prestigeList.get(0);
+                nextPrestige = prestigiesArrayList.get(0);
             }
             boolean completed = true;
             for(EntityType entityType : nextPrestige.getKillsRequirement().getEntities()){
@@ -163,7 +170,7 @@ public class PrestigeManager {
         return new ArrayList<>(this.prestigies.keySet());
     }
 
-    public HashMap<String, Prestige> getPrestigesMap(){
+    public HashMap<String, Prestige> getPrestigiesMap(){
         return prestigies;
     }
 

@@ -146,3 +146,32 @@ killsRequirement:
     nextPage:
       material: ARROW
       name: "&3Next Page"
+entityChoose:
+  title: "Entity Selector"
+  items:
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: CHEST
+      name: "&3Return"
+      lore:
+        - "&6"
+        - "&7Left Click to return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+      lore:
+        - "&6"
+        - "&7Left Click to close"
+    entity:
+      material: PAPER
+      name: "&f%entityType%"
+      lore:
+        - "&6"
+        - "&7Left Click to select"
+    previousPage:
+      material: ARROW
+      name: "&3Previous Page"
+    nextPage:
+      material: ARROW
+      name: "&3Next Page"

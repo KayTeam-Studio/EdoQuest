@@ -53,18 +53,10 @@ public class PrestigeEditorInventory extends InventoryBuilder {
         }));
         // RankToPrestige :D
         addItem(11, () -> Yaml.replace(inventories.getItemStack("prestigeEditor.items.prestigeRank"), new String[][] {{"%prestigeRank%", prestige.getPrestigeRank()}}));
-        addLeftAction(11, ((player1, i) -> {
-            plugin.getInventoryManager().openInventory(player, new PrestigeRankSelectorInventory(plugin, prestige, player, 1));
-        }));
-        // RequirementRank
-        addItem(15, () -> inventories.getItemStack("prestigeEditor.items.requirementRank"));
-        addLeftAction(15, ((player1, i) -> {
-        }));
+        addLeftAction(11, (player1, i) -> plugin.getInventoryManager().openInventory(player1, new PrestigeRankSelectorInventory(plugin, prestige, player, 1)));
         // RequirementKills
-        addItem(16, () -> inventories.getItemStack("prestigeEditor.items.requirementKills"));
-        addLeftAction(16, ((player1, i) -> {
-
-        }));
+        addItem(15, () -> inventories.getItemStack("prestigeEditor.items.requirementKills"));
+        addLeftAction(15, (player1, i) -> plugin.getInventoryManager().openInventory(player1, new KillsRequirementInventory(plugin, prestige, player, 1)));
     }
 
 }

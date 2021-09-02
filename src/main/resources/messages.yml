@@ -3,10 +3,13 @@ edoQuest:
   noPermission: "%prefix% &fYou don't have permission."
 prestigies:
   createPrestige:
-    input: "%prefix% &fInput the name in the chat. to cancel press SHIFT."
+    input: "%prefix% &fInput the name in the chat, to cancel press SHIFT."
     containSpace: "%prefix% &fThe name contain spaces. Try again!"
     tooLong: "%prefix% &fThe name is too long. Try again!"
     alreadyExist: "%prefix% &fThe prestige &3%name%&f already exist. Try again!"
 prestigeEditor:
   input: "%prefix% &f"
   tooLong: "%prefix% &f"
+killsRequirements:
+  input: "%prefix% &fInput the amount in the chat, to cancel press SHIFT."
+  invalidNumber: "%prefix% &fThe number is invalid, try again!"

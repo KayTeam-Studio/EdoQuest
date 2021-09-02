@@ -41,7 +41,7 @@ public class PrestigeManager {
                 Prestige prestige = new Prestige(name);
                 if (prestigies.contains(name + ".display.name")) {
                     if (prestigies.isString(name + ".display.name")) {
-                        prestige.setDisplayName(prestigies.getString(name + ".display.name", name));
+                        prestige.setDisplayName(prestigies.getString(name + ".display.name"));
                     }
                 }
                 if (prestigies.contains(name + ".position")) {

@@ -44,6 +44,7 @@ public class PrestigeManager {
             Prestige prestige = prestigeList.get(i);
             if (prestige.getPosition() != i) {
                 prestige.setPosition(i);
+                savePrestige(prestige.getName());
             }
         }
         Collections.sort(prestigeList);

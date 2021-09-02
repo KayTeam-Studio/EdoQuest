@@ -90,16 +90,15 @@ public class PrestigeManager {
     public void checkNextPrestige(Player player){
         Prestige actualPrestige = getPlayerPrestige(player);
         Prestige nextPrestige;
-        ArrayList<Prestige> prestigesArrayList = new ArrayList<>(this.prestigies.values());
-        if(prestigesArrayList.size()<prestigesArrayList.indexOf(actualPrestige)+1){
+        if(prestigeList.size()<prestigeList.indexOf(actualPrestige)+1){
             if(actualPrestige != null){
                 try{
-                    nextPrestige = prestigesArrayList.get(prestigesArrayList.indexOf(actualPrestige)+1);
+                    nextPrestige = prestigeList.get(prestigeList.indexOf(actualPrestige)+1);
                 }catch (Exception e){
                     return;
                 }
             }else{
-                nextPrestige = prestigesArrayList.get(0);
+                nextPrestige = prestigeList.get(0);
             }
             boolean completed = true;
             for(EntityType entityType : nextPrestige.getKillsRequirement().getEntities()){

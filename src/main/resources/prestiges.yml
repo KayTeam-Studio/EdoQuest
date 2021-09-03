@@ -1,14 +1,14 @@
 user+: # Nombre del rango (No es necesario que sea el del rango es simbólico).
   display: # Textos que saran visualizados en los inventarios.
     name: "&3&lUser&6&l+" # El nombre que se visualizara en los inventarios.
-  rankPrestige: "user+" # El nombre del rango que corresponda en su complemento de permisos.
+  prestigeRank: "user+" # El nombre del rango que corresponda en su complemento de permisos.
   requirements: # Lista de requerimientos para poder prestigiarse.
     kills: # Lista de asesinatos.
       - "ZOMBIE:20" # Matar 20 Zombies.
 user++: # Nombre del rango (No es necesario que sea el del rango es simbólico).
   display: # Textos que saran visualizados en los inventarios.
     name: "&3&lUser&6&l+&e&l+" # El nombre que se visualizara en los inventarios.
-  rankPrestige: "user++" # El nombre del rango que corresponda en su complemento de permisos.
+  prestigeRank: "user++" # El nombre del rango que corresponda en su complemento de permisos.
   requirements: # Lista de requerimientos para poder prestigiarse.
     rank: "user+" # Poseer el rango user+
     kills: # Lista de asesinatos.

@@ -34,6 +34,7 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
+        // %edoquest_next_prestige%
         if("next_prestige".equals(params)){
             try{
                 ArrayList<Prestige> prestiges = new ArrayList<>(plugin.getPrestigeManager().getPrestigiesMap().values());
@@ -41,26 +42,27 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
                 if(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()) != null){
                     nextPrestigeIndex = prestiges.indexOf(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()))+1;
                 }
-                if(nextPrestigeIndex <= prestiges.size()){
-                    return ChatColor.translateAlternateColorCodes('&', ((Prestige)prestiges.get(nextPrestigeIndex)).getDisplayName());
+                if(nextPrestigeIndex < prestiges.size()){
+                    return ((Prestige)prestiges.get(nextPrestigeIndex)).getDisplayName();
                 }else{
-                    return ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("placeholders.maxPrestigeReached"));
+                    return plugin.getSettings().getString("placeholders.maxPrestigeReached");
                 }
             }catch (Exception e){
-                return "Error.";
+                return "&cError.";
             }
+        // %edoquest_display_name%
         }else if("display_name".equals(params)){
             try{
                 if(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()) != null){
-                    return ChatColor.translateAlternateColorCodes('&', plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()).getDisplayName());
+                    return plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()).getDisplayName();
                 }else{
-                    return ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("placeholders.defaultPrestigeDisplayName"));
+                    return plugin.getSettings().getString("placeholders.defaultPrestigeDisplayName");
                 }
             }catch (Exception e){
-                return "Error.";
+                return "&cError.";
             }
         }else{
-            return "Invalid.";
+            return "&cInvalid placeholder.";
         }
     }
 }

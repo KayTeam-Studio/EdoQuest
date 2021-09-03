@@ -1,6 +1,8 @@
 package org.kayteam.edoquest;
 
+import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -64,11 +66,6 @@ public final class EdoQuest extends JavaPlugin {
         registerFiles();
         registerListeners();
         registerCommands();
-        if (!setupPermissions()) {
-            getLogger().info("This plugin required a permission plugin to work.");
-            getPluginLoader().disablePlugin(this);
-            return;
-        }
         prestigeManager.loadPrestigies();
         prestigeManager.loadPlayersData();
         new EdoQuestExpansion(this).register();
@@ -103,13 +100,4 @@ public final class EdoQuest extends JavaPlugin {
     private void registerCommands() {
         new EdoQuestCommand(this);
     }
-
-    private boolean setupPermissions() {
-        RegisteredServiceProvider<Permission> registeredServiceProvider = getServer().getServicesManager().getRegistration(Permission.class);
-        if (registeredServiceProvider != null) {
-            permission = registeredServiceProvider.getProvider();
-        }
-        return permission != null;
-    }
-
 }

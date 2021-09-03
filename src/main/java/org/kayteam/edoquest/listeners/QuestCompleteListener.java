@@ -24,9 +24,13 @@ public class QuestCompleteListener implements Listener {
         Player player = event.getPlayer();
         String group = event.getPrestige().getPrestigeRank();
         try{
-            EdoQuest.getPermissions().playerAddGroup(player, group);
+            // ADD PERMISSION PARENT GROUP BY COMMAND
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), plugin.getSettings().getString("questComplete.commandExecuted",
+                    new String[][]{{"%player_name%", player.getName()}, {"%prestige%", group}}));
+            // PLAY QUEST COMPLETE SOUND
             player.playSound(player.getLocation(),
                     Sound.valueOf(plugin.getSettings().getString("questComplete.sound")), 1, 1);
+            // SEND QUEST COMPLETE TITLE
             if(plugin.getSettings().getBoolean("questComplete.title.enabled")){
                 player.sendTitle(ChatColor.translateAlternateColorCodes('&',
                                 plugin.getSettings().getString("questComplete.title.title",
@@ -35,6 +39,7 @@ public class QuestCompleteListener implements Listener {
                                 plugin.getSettings().getString("questComplete.title.subtitle",
                                 new String[][]{{"%display_name%", event.getPrestige().getDisplayName()}})));
             }
+            // SEND QUEST COMPLETE MESSAGES
             plugin.getSettings().sendMessage(player, "questComplete.messages",
                     new String[][]{{"%display_name%", event.getPrestige().getDisplayName()}});
         }catch (Exception e){

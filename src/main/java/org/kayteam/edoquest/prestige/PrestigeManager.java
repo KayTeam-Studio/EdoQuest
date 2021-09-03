@@ -9,6 +9,7 @@ import org.kayteam.edoquest.events.QuestCompleteEvent;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
 import java.util.*;
+import java.util.logging.Level;
 
 public class PrestigeManager {
 
@@ -58,15 +59,33 @@ public class PrestigeManager {
         if (names.size() > 0) {
             for (String name : names) {
                 Prestige prestige = new Prestige(name);
+                boolean loadComplete = true;
                 if (prestigies.contains(name + ".display.name")) {
                     if (prestigies.isString(name + ".display.name")) {
                         prestige.setDisplayName(prestigies.getString(name + ".display.name"));
                     }
+                }else{
+                    loadComplete = false;
+                    plugin.getLogger().log(Level.SEVERE, "Prestige "+prestige.getName()+" missing display.name path, please add this to correct enable of that prestige.");
+                    return;
                 }
                 if (prestigies.contains(name + ".position")) {
                     if (prestigies.isInt(name + ".position")) {
                         prestige.setPosition(prestigies.getInt(name + ".position"));
                     }
+                }else{
+                    loadComplete = false;
+                    plugin.getLogger().log(Level.SEVERE, "Prestige "+prestige.getName()+" missing position path, please add this to correct enable of that prestige.");
+                    return;
+                }
+                if (prestigies.contains(name + ".prestigeRank")) {
+                    if (prestigies.isString(name + ".prestigeRank")) {
+                        prestige.setPrestigeRank(prestigies.getString(name + ".prestigeRank"));
+                    }
+                }else{
+                    loadComplete = false;
+                    plugin.getLogger().log(Level.SEVERE, "Prestige "+prestige.getName()+" missing prestigeRank path, please add this to correct enable of that prestige.");
+                    return;
                 }
                 if (prestigies.contains(name + ".requirements.kills")) {
                     if (prestigies.isList(name + ".requirements.kills")) {
@@ -87,9 +106,17 @@ public class PrestigeManager {
                             }
                         }
                     }
+                }else{
+                    loadComplete = false;
+                    plugin.getLogger().log(Level.SEVERE, "Prestige "+prestige.getName()+" missing requirements.kills path, please add this to correct enable of that prestige.");
+                    return;
                 }
-                prestigeList.add(prestige);
-                Bukkit.getLogger().info("LOADED "+prestige.toString());
+                if(loadComplete){
+                    prestigeList.add(prestige);
+                    plugin.getLogger().info("Prestige "+prestige.getName()+" has been loaded correctly.");
+                }else{
+                    plugin.getLogger().log(Level.SEVERE, "An error has occurred ");
+                }
             }
         }
         sortPrestigies();
@@ -161,7 +188,7 @@ public class PrestigeManager {
         for (EntityType entityType:prestige.getKillsRequirement().getEntities()) {
             kills.add(entityType.name() + ":" + prestige.getKillsRequirement().getAmount(entityType));
         }
-        prestigies.set(name + ".requirement.kills", kills);
+        prestigies.set(name + ".requirements.kills", kills);
         prestigies.saveFileConfiguration();
     }
 

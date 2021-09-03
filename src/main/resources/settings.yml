@@ -2,6 +2,7 @@ placeholders:
   maxPrestigeReached: "&7Max rank reached"
   defaultPrestigeDisplayName: "&7None"
 questComplete:
+  commandExecuted: "lp user %player_name% parent add %prestige%"
   sound: UI_TOAST_CHALLENGE_COMPLETE
   title:
     enabled: true

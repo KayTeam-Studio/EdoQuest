@@ -14,9 +14,75 @@ edoQuest:
       name: "&3Prestigies"
       lore:
         - "&6"
-        - "&6Ping&e: &e%player_ping%"
+        - "&7Left Click to open"
+    questCompleteSettings:
+      material: CHEST
+      name: "Quest Complete Settings"
+      lore:
         - "&6"
         - "&7Left Click to open"
+questComplete:
+  settings:
+    inventoryTitle: "Quest Complete Settings"
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: ARROW
+      name: "&3Return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+    sound:
+      material: NOTE_BLOCK
+      name: "&3Sound"
+      lore:
+        - "&6"
+        - "&6Current Sound&e: &f%sound%"
+        - "&6"
+        - "&7Left Click to change"
+        - "&7Right Click to play"
+    title:
+      material: PAPER
+      name: "&3Title"
+      lore:
+        - "&6"
+        - "&6Current Title"
+        - "%title%"
+        - "&6"
+        - "&7Left Click to change"
+    subTitle:
+      material: PAPER
+      name: "&3SubTitle"
+      lore:
+        - "&6"
+        - "&6Current SubTitle"
+        - "%subTitle%"
+        - "&6"
+        - "&7Left Click to change"
+  soundSelector:
+    title: "Sound Selector"
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: CHEST
+      name: "&3Return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+    sound:
+      material: PAPER
+      name: "%sound%"
+      lore:
+        - "&6"
+        - "&7Left Click to select"
+        - "&7Right Click to play"
+    previousPage:
+      material: ARROW
+      name: "&3Previous Page"
+    nextPage:
+      materrial: ARROW
+      name: "&3Next Page"
+
 prestigies:
   title: "Prestigies"
   items:

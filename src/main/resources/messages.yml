@@ -14,3 +14,6 @@ prestigeEditor:
 killsRequirements:
   input: "%prefix% &fInput the amount in the chat, to cancel press SHIFT."
   invalidNumber: "%prefix% &fThe number is invalid, try again!"
+questComplete:
+  titleTextInput: "%prefix% &fInput in the chat the new title, to cancel press SHIFT."
+  titleSubTextInput: "%prefix% &fInput in the chat the new sub title, to cancel press SHIFT."

@@ -19,7 +19,7 @@ public class EdoQuestCommand extends SimpleCommand {
     public void onPlayerExecute(Player player, String[] arguments) {
         Yaml messages = plugin.getMessages();
         if (player.hasPermission("edoquest.admin")) {
-            plugin.getInventoryManager().openInventory(player, new EdoQuestInventory(plugin, player));
+            plugin.getInventoryManager().openInventory(player, new EdoQuestInventory(plugin));
         } else {
             messages.sendMessage(player, "edoQuest.noPermission");
         }

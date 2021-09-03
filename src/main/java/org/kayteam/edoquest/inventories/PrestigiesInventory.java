@@ -20,7 +20,7 @@ public class PrestigiesInventory extends InventoryBuilder {
         for (int i = 50; i < 53; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
         // Return
         addItem(0, () -> inventories.getItemStack("prestigies.items.return"));
-        addLeftAction(0, (player1, slot) -> plugin.getInventoryManager().openInventory(player1, new EdoQuestInventory(plugin, player)));
+        addLeftAction(0, (player1, slot) -> plugin.getInventoryManager().openInventory(player1, new EdoQuestInventory(plugin)));
         // Close
         addItem(8, () -> inventories.getItemStack("prestigies.items.close"));
         addLeftAction(8, (player1, slot) -> player.closeInventory());

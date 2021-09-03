@@ -40,7 +40,6 @@ public class PrestigeManager {
 
     public void sortPrestigies() {
         Collections.sort(prestigeList);
-        /*
         for(int i = 0; i < prestigeList.size(); i++) {
             Prestige prestige = prestigeList.get(i);
             if (prestige.getPosition() != i) {
@@ -48,7 +47,8 @@ public class PrestigeManager {
                 savePrestige(prestige.getName());
             }
         }
-        */
+        unloadPlayersData();
+        loadPlayersData();
     }
 
     public void loadPrestigies() {
@@ -104,16 +104,16 @@ public class PrestigeManager {
                             }
                         }
                     }
-                }else{
+                } else {
                     loadComplete = false;
-                    plugin.getLogger().log(Level.SEVERE, "Prestige "+prestige.getName()+" missing requirements.kills path, please add this to correct enable of that prestige.");
+                    plugin.getLogger().log(Level.SEVERE, "Prestige " + name + " missing requirements.kills path, please add this to correct enable of that prestige.");
                     return;
                 }
                 if(loadComplete){
                     prestigeList.add(prestige);
-                    plugin.getLogger().info("Prestige "+prestige.getName()+" has been loaded correctly.");
+                    plugin.getLogger().info("Prestige " + name + " has been loaded correctly.");
                 }else{
-                    plugin.getLogger().log(Level.SEVERE, "An error has occurred ");
+                    plugin.getLogger().log(Level.SEVERE, "An error has occurred trying load " + name);
                 }
             }
         }
@@ -155,6 +155,14 @@ public class PrestigeManager {
             };
             thread.start();
         }
+    }
+
+    public void unloadPlayersData() {
+        playerData.clear();
+    }
+
+    public void unloadPlayerData(Player player) {
+        playerData.remove(player);
     }
 
     public Prestige getPlayerPrestige(Player player){

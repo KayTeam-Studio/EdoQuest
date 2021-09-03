@@ -41,7 +41,15 @@ questComplete:
         - "&6"
         - "&7Left Click to change"
         - "&7Right Click to play"
-    title:
+    titleEnabled:
+      material: CHEST
+      name: "&3Title Status"
+      lore:
+        - "&6"
+        - "&6Status&e: %status%"
+        - "&6"
+        - "&7Left Click to change"
+    titleText:
       material: PAPER
       name: "&3Title"
       lore:
@@ -50,7 +58,7 @@ questComplete:
         - "%title%"
         - "&6"
         - "&7Left Click to change"
-    subTitle:
+    titleSubText:
       material: PAPER
       name: "&3SubTitle"
       lore:

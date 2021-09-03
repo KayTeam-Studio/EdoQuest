@@ -66,7 +66,7 @@ public class SettingsInventory extends InventoryBuilder {
             });
         });
         // TitleSubText
-        addItem(30, () -> inventories.getItemStack("questComplete.settings.subText"));
+        addItem(30, () -> inventories.getItemStack("questComplete.settings.titleSubText"));
         addLeftAction(30, (player, slot) -> {
             player.closeInventory();
             plugin.getMessages().sendMessage(player, "questComplete.titleSubTextInput");

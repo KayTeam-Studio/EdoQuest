@@ -30,13 +30,13 @@ public class QuestCompleteListener implements Listener {
             if(plugin.getSettings().getBoolean("questComplete.title.enabled")){
                 player.sendTitle(ChatColor.translateAlternateColorCodes('&',
                                 plugin.getSettings().getString("questComplete.title.title",
-                                new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})),
+                                new String[][]{{"%display_name%", event.getPrestige().getDisplayName()}})),
                         ChatColor.translateAlternateColorCodes('&',
                                 plugin.getSettings().getString("questComplete.title.subtitle",
-                                new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}})));
+                                new String[][]{{"%display_name%", event.getPrestige().getDisplayName()}})));
             }
             plugin.getSettings().sendMessage(player, "questComplete.messages",
-                    new String[][]{{"%prestige%", event.getPrestige().getDisplayName()}});
+                    new String[][]{{"%display_name%", event.getPrestige().getDisplayName()}});
         }catch (Exception e){
             Bukkit.getLogger().log(Level.SEVERE, ChatColor.translateAlternateColorCodes('&', "&c[EdoQuest] An error has ocurred trying to give &f"+group+" &cto &f"+player.getName()));
         }

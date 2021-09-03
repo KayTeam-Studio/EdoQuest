@@ -40,9 +40,16 @@ public class EntityDeathListener implements Listener {
                 boolean completed = true;
                 for(EntityType entityType : nextPrestige.getKillsRequirement().getEntities()){
                     int entityKillsNeeded = nextPrestige.getKillsRequirement().getAmount(entityType);
-                    if((player.getStatistic(Statistic.KILL_ENTITY, entityType)+1) < entityKillsNeeded){
-                        completed = false;
-                        break;
+                    if(entityType.equals(event.getEntityType())){
+                        if((player.getStatistic(Statistic.KILL_ENTITY, entityType)+1) < entityKillsNeeded){
+                            completed = false;
+                            break;
+                        }
+                    }else{
+                        if((player.getStatistic(Statistic.KILL_ENTITY, entityType)) < entityKillsNeeded){
+                            completed = false;
+                            break;
+                        }
                     }
                 }
                 if(completed){

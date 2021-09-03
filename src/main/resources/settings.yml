@@ -6,9 +6,9 @@ questComplete:
   title:
     enabled: true
     title: "&2&oCongratulations!"
-    subtitle: "&fYou have reached prestige %prestige%"
+    subtitle: "&fYou have reached prestige %display_name%"
   messages:
     - ""
     - " &2&oCongratulations!"
-    - " &oYou have reached prestige %prestige%"
+    - " &oYou have reached prestige %display_name%"
     - ""

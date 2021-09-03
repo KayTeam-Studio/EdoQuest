@@ -17,8 +17,8 @@ public class PrestigeManager {
     }
 
     private final EdoQuest plugin;
-    private final HashMap<String, Prestige> prestigies = new HashMap<>();
-    private final HashMap<Player, Prestige> playerData = new HashMap<>();
+    private final LinkedHashMap<String, Prestige> prestigies = new LinkedHashMap<>();
+    private final LinkedHashMap<Player, Prestige> playerData = new LinkedHashMap<>();
     private final List<Prestige> prestigeList = new ArrayList<>();
 
     public List<Prestige> getPrestigeList() {
@@ -40,6 +40,8 @@ public class PrestigeManager {
     }
 
     public void sortPrestigies() {
+        Collections.sort(prestigeList);
+        /*
         for(int i = 0; i < prestigeList.size(); i++) {
             Prestige prestige = prestigeList.get(i);
             if (prestige.getPosition() != i) {
@@ -47,7 +49,7 @@ public class PrestigeManager {
                 savePrestige(prestige.getName());
             }
         }
-        Collections.sort(prestigeList);
+        */
     }
 
     public void loadPrestigies() {

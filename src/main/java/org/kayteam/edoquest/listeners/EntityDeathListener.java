@@ -27,7 +27,7 @@ public class EntityDeathListener implements Listener {
             Prestige actualPrestige = plugin.getPrestigeManager().getPlayerPrestige(player);
             Prestige nextPrestige;
             ArrayList<Prestige> prestigiesArrayList = new ArrayList<>(plugin.getPrestigeManager().getPrestigiesMap().values());
-            if(prestigiesArrayList.size()<prestigiesArrayList.indexOf(actualPrestige)+1){
+            if(prestigiesArrayList.indexOf(actualPrestige)+1 <= prestigiesArrayList.size()){
                 if(actualPrestige != null){
                     try{
                         nextPrestige = prestigiesArrayList.get(prestigiesArrayList.indexOf(actualPrestige)+1);

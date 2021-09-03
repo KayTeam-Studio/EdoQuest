@@ -37,7 +37,10 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
         if("next_prestige".equals(params)){
             try{
                 ArrayList<Prestige> prestiges = new ArrayList<>(plugin.getPrestigeManager().getPrestigiesMap().values());
-                int nextPrestigeIndex = prestiges.indexOf(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()))+1;
+                int nextPrestigeIndex = 0;
+                if(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()) != null){
+                    nextPrestigeIndex = prestiges.indexOf(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()))+1;
+                }
                 if(nextPrestigeIndex <= prestiges.size()){
                     return ChatColor.translateAlternateColorCodes('&', ((Prestige)prestiges.get(nextPrestigeIndex)).getDisplayName());
                 }else{
@@ -48,7 +51,11 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
             }
         }else if("display_name".equals(params)){
             try{
-                return ChatColor.translateAlternateColorCodes('&', plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()).getDisplayName());
+                if(plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()) != null){
+                    return ChatColor.translateAlternateColorCodes('&', plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer()).getDisplayName());
+                }else{
+                    return ChatColor.translateAlternateColorCodes('&', plugin.getSettings().getString("placeholders.defaultPrestigeDisplayName"));
+                }
             }catch (Exception e){
                 return "Error.";
             }

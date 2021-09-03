@@ -47,6 +47,10 @@ public class PrestigeManager {
                 savePrestige(prestige.getName());
             }
         }
+        prestigies.clear();
+        for(Prestige p : prestigeList){
+            prestigies.put(p.getName(), p);
+        }
         unloadPlayersData();
         loadPlayersData();
     }
@@ -118,14 +122,11 @@ public class PrestigeManager {
             }
         }
         sortPrestigies();
-        for(Prestige p : prestigeList){
-            this.prestigies.put(p.getName(), p);
-        }
     }
 
     public void loadPlayerPrestige(Player player){
         Thread thread = new Thread(() -> {
-            Prestige playerPrestige = null;
+            Prestige playerPrestige;
             for(Prestige prestige : prestigies.values()){
                 boolean completed = true;
                 for(EntityType entityType : prestige.getKillsRequirement().getEntities()){
@@ -148,11 +149,7 @@ public class PrestigeManager {
 
     public void loadPlayersData(){
         for(Player player : plugin.getServer().getOnlinePlayers()){
-            Thread thread = new Thread(){
-                public void run(){
-                    loadPlayerPrestige(player);
-                }
-            };
+            Thread thread = new Thread(() -> loadPlayerPrestige(player));
             thread.start();
         }
     }
@@ -196,6 +193,8 @@ public class PrestigeManager {
         }
         prestigies.set(name + ".requirements.kills", kills);
         prestigies.saveFileConfiguration();
+        unloadPlayersData();
+        loadPlayersData();
     }
 
     public List<String> getPrestigies() {

@@ -1,11 +1,9 @@
 package org.kayteam.edoquest.prestige;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Statistic;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.kayteam.edoquest.EdoQuest;
-import org.kayteam.edoquest.events.QuestCompleteEvent;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
 import java.util.*;

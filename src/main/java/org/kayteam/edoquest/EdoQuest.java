@@ -1,10 +1,7 @@
 package org.kayteam.edoquest;
 
-import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.permission.Permission;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.kayteam.edoquest.commands.EdoQuestCommand;
 import org.kayteam.edoquest.listeners.EntityDeathListener;

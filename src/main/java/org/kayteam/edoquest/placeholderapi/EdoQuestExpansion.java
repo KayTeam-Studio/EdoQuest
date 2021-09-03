@@ -1,7 +1,6 @@
 package org.kayteam.edoquest.placeholderapi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.kayteam.edoquest.EdoQuest;

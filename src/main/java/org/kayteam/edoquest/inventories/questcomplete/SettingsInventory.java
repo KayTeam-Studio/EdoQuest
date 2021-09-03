@@ -18,37 +18,57 @@ public class SettingsInventory extends InventoryBuilder {
         addItem(0, () -> inventories.getItemStack("questComplete.settings.return"));
         addLeftAction(0, (player, slot) -> plugin.getInventoryManager().openInventory(player, new EdoQuestInventory(plugin)));
         // Close
-        addItem(8, () -> inventories.getItemStack("questComplete.settings.return"));
+        addItem(8, () -> inventories.getItemStack("questComplete.settings.close"));
         addLeftAction(8, (player, slot) -> player.closeInventory());
         // SoundEnabled
-        addItem(13, () -> inventories.getItemStack("questComplete.settings.soundEnabled"));
-        // Sound
-        addItem(22, () -> inventories.getItemStack("questComplete.settings.sound"));
+        if(plugin.getSettings().getBoolean("questComplete.sound.enabled")){
+            addItem(13, () -> inventories.getItemStack("questComplete.settings.soundEnabled"));
+        }else{
+            addItem(13, () -> inventories.getItemStack("questComplete.settings.soundDisabled"));
+        }
+        addLeftAction(13, (player, i) -> {
+            if(plugin.getSettings().getBoolean("questComplete.sound.enabled")){
+                plugin.getSettings().set("questComplete.sound.enabled", false);
+                plugin.getSettings().saveFileConfiguration();
+            }else{
+                plugin.getSettings().set("questComplete.sound.enabled", true);
+                plugin.getSettings().saveFileConfiguration();
+            }
+            plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+        });
+        // Sound Selector
+        addItem(22, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.sound"),
+                new String[][]{{"%sound%", plugin.getSettings().getString("questComplete.sound.type")}}));
         addLeftAction(22, (player, i) -> plugin.getInventoryManager().openInventory(player, new SoundSelectorInventory(plugin, 1)));
         addRightAction(22, (player, i) -> {
             try {
-                Sound sound = Sound.valueOf(plugin.getSettings().getString("questComplete.sound"));
+                Sound sound = Sound.valueOf(plugin.getSettings().getString("questComplete.sound.type"));
                 player.playSound(player.getLocation(), sound, 1, 1);
             } catch (IllegalArgumentException e) {
-                plugin.getLogger().info("The 'questComplete.sound' in 'settings.yml' contain a invalid sound!");
+                plugin.getLogger().info("The 'questComplete.sound.type' in 'settings.yml' contain a invalid sound!");
             } catch (NullPointerException e) {
-                plugin.getLogger().info("The 'questComplete.sound' in 'settings.yml' no exist!");
+                plugin.getLogger().info("The 'questComplete.sound.type' in 'settings.yml' no exist!");
             }
         });
         // TitleEnabled
-        String titleStatus;
-        if (plugin.getSettings().getBoolean("questComplete.title.enabled")) {
-            titleStatus = inventories.getString("questComplete.texts.enabled");
-        } else {
-            titleStatus = inventories.getString("questComplete.texts.disabled");
+        if(plugin.getSettings().getBoolean("questComplete.title.enabled")){
+            addItem(12, () -> inventories.getItemStack("questComplete.settings.titleEnabled"));
+        }else{
+            addItem(12, () -> inventories.getItemStack("questComplete.settings.titleDisabled"));
         }
-        addItem(12, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.titleEnabled"), new String[][] {{"%status%", titleStatus}}));
-        addLeftAction(12, (player, slot) -> {
-            plugin.getSettings().set("questComplete.title.enabled", !plugin.getSettings().getBoolean("questComplete.title.enabled"));
+        addLeftAction(12, (player, i) -> {
+            if(plugin.getSettings().getBoolean("questComplete.title.enabled")){
+                plugin.getSettings().set("questComplete.title.enabled", false);
+                plugin.getSettings().saveFileConfiguration();
+            }else{
+                plugin.getSettings().set("questComplete.title.enabled", true);
+                plugin.getSettings().saveFileConfiguration();
+            }
             plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
         });
         // TitleText
-        addItem(21, () -> inventories.getItemStack("questComplete.settings.titleText"));
+        addItem(21, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.titleText"),
+                new String[][]{{"%title%", plugin.getSettings().getString("questComplete.title.text")}}));
         addLeftAction(21, (player, slot) -> {
             player.closeInventory();
             plugin.getMessages().sendMessage(player, "questComplete.titleTextInput");
@@ -66,7 +86,8 @@ public class SettingsInventory extends InventoryBuilder {
             });
         });
         // TitleSubText
-        addItem(30, () -> inventories.getItemStack("questComplete.settings.titleSubText"));
+        addItem(30, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.titleSubText"),
+                new String[][]{{"%subTitle%", plugin.getSettings().getString("questComplete.title.subText")}}));
         addLeftAction(30, (player, slot) -> {
             player.closeInventory();
             plugin.getMessages().sendMessage(player, "questComplete.titleSubTextInput");
@@ -83,6 +104,26 @@ public class SettingsInventory extends InventoryBuilder {
                 public void onPlayerSneak(Player player) { plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin)); }
             });
         });
+        // MessageEnabled
+        if(plugin.getSettings().getBoolean("questComplete.messages.enabled")){
+            addItem(14, () -> inventories.getItemStack("questComplete.settings.messagesEnabled"));
+        }else{
+            addItem(14, () -> inventories.getItemStack("questComplete.settings.messagesDisabled"));
+        }
+        addLeftAction(14, (player, i) -> {
+            if(plugin.getSettings().getBoolean("questComplete.messages.enabled")){
+                plugin.getSettings().set("questComplete.messages.enabled", false);
+                plugin.getSettings().saveFileConfiguration();
+            }else{
+                plugin.getSettings().set("questComplete.messages.enabled", true);
+                plugin.getSettings().saveFileConfiguration();
+            }
+            plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+        });
+        // Messages Edit Menu
+        addItem(23, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.messages"),
+                new String[][]{{"%amount%", String.valueOf(plugin.getSettings().getList("questComplete.messages.texts").size())}}));
+        addLeftAction(23, ((player, i) -> plugin.getInventoryManager().openInventory(player, new MessagesEditorInventory(plugin, 1))));
     }
 
 }

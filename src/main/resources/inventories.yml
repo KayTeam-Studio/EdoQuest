@@ -17,7 +17,7 @@ edoQuest:
         - "&7Left Click to open"
     questCompleteSettings:
       material: CHEST
-      name: "Quest Complete Settings"
+      name: "&3Quest Complete Settings"
       lore:
         - "&6"
         - "&7Left Click to open"
@@ -37,18 +37,56 @@ questComplete:
       name: "&3Sound"
       lore:
         - "&6"
-        - "&6Current Sound&e: &f%sound%"
+        - "&6Current Sound&e:"
+        - "&f%sound%"
         - "&6"
         - "&7Left Click to change"
         - "&7Right Click to play"
-    titleEnabled:
-      material: CHEST
-      name: "&3Title Status"
+    soundEnabled:
+      material: LIME_WOOL
+      name: "&3Sound &aEnabled"
       lore:
         - "&6"
-        - "&6Status&e: %status%"
+        - "&7Left Click to disable"
+    soundDisabled:
+      material: RED_WOOL
+      name: "&3Sound &cDisabled"
+      lore:
         - "&6"
-        - "&7Left Click to change"
+        - "&7Left Click to enable"
+    titleEnabled:
+      material: LIME_WOOL
+      name: "&3Title &aEnabled"
+      lore:
+        - "&6"
+        - "&7Left Click to disable"
+    titleDisabled:
+      material: RED_WOOL
+      name: "&3Title &cDisabled"
+      lore:
+        - "&6"
+        - "&7Left Click to enable"
+    messages:
+      material: CHEST
+      name: "&3Messages"
+      lore:
+        - "&6"
+        - "&6Current Amount:"
+        - "&f%amount%"
+        - ""
+        - "&7Left Click to edit"
+    messagesEnabled:
+      material: LIME_WOOL
+      name: "&3Messages &aEnabled"
+      lore:
+        - "&6"
+        - "&7Left Click to disable"
+    messagesDisabled:
+      material: RED_WOOL
+      name: "&3Messages &cDisabled"
+      lore:
+        - "&6"
+        - "&7Left Click to enable"
     titleText:
       material: PAPER
       name: "&3Title"
@@ -72,7 +110,7 @@ questComplete:
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
-      material: CHEST
+      material: ARROW
       name: "&3Return"
     close:
       material: BARRIER
@@ -90,14 +128,43 @@ questComplete:
     nextPage:
       materrial: ARROW
       name: "&3Next Page"
-
+  messagesEditor:
+    title: "Messages Editor"
+    panel:
+      material: GRAY_STAINED_GLASS_PANE
+    return:
+      material: ARROW
+      name: "&3Return"
+    close:
+      material: BARRIER
+      name: "&3Close"
+    addMessage:
+      material: PAPER
+      name: "&3Add Message"
+      lore:
+        - "&6"
+        - "&7Left Click to add message"
+    message:
+      material: PAPER
+      name: "&f%message%"
+      lore:
+        - "&6"
+        - "&7Left Shift Click to delete"
+        - "&7Left Click to move left"
+        - "&7Right Click to move right"
+    previousPage:
+      material: ARROW
+      name: "&3Previous Page"
+    nextPage:
+      material: ARROW
+      name: "&3Next Page"
 prestigies:
   title: "Prestigies"
   items:
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
-      material: CHEST
+      material: ARROW
       name: "&3Return"
     close:
       material: BARRIER
@@ -111,23 +178,23 @@ prestigies:
         - "&6"
         - "&7Left Shift Click to edit"
         - "&7Left Click to move left"
-        - "&7Left Click to move right"
+        - "&7Right Click to move right"
     previousPage:
       material: ARROW
       name: "&3Previous Page"
-    createPrestige:
-      material: PAPER
-      name: "&3Create Prestige"
     nextPage:
       material: ARROW
       name: "&3Next Page"
+    createPrestige:
+      material: PAPER
+      name: "&3Create Prestige"
 prestigeEditor:
   title: "Prestige Editor"
   items:
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
-      material: CHEST
+      material: ARROW
       name: "&3Return"
       lore:
         - "&6"
@@ -168,7 +235,7 @@ prestigeRankSelector:
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
-      material: CHEST
+      material: ARROW
       name: "&3Return"
       lore:
         - "&6"
@@ -194,7 +261,7 @@ killsRequirement:
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
-      material: CHEST
+      material: ARROW
       name: "&3Return"
       lore:
         - "&6"
@@ -229,7 +296,7 @@ entityChoose:
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
-      material: CHEST
+      material: ARROW
       name: "&3Return"
       lore:
         - "&6"

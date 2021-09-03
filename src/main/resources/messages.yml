@@ -17,3 +17,4 @@ killsRequirements:
 questComplete:
   titleTextInput: "%prefix% &fInput in the chat the new title, to cancel press SHIFT."
   titleSubTextInput: "%prefix% &fInput in the chat the new sub title, to cancel press SHIFT."
+  messageInput: "%prefix% &fInput in the chat the message what you want to add, to cancel press SHIFT."

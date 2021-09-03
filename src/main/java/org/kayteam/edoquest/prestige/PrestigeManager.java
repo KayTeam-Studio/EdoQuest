@@ -40,16 +40,16 @@ public class PrestigeManager {
 
     public void sortPrestigies() {
         Collections.sort(prestigeList);
+        prestigies.clear();
+        for(Prestige p : prestigeList){
+            prestigies.put(p.getName(), p);
+        }
         for(int i = 0; i < prestigeList.size(); i++) {
             Prestige prestige = prestigeList.get(i);
             if (prestige.getPosition() != i) {
                 prestige.setPosition(i);
                 savePrestige(prestige.getName());
             }
-        }
-        prestigies.clear();
-        for(Prestige p : prestigeList){
-            prestigies.put(p.getName(), p);
         }
         unloadPlayersData();
         loadPlayersData();
@@ -111,7 +111,6 @@ public class PrestigeManager {
                 } else {
                     loadComplete = false;
                     plugin.getLogger().log(Level.SEVERE, "Prestige " + name + " missing requirements.kills path, please add this to correct enable of that prestige.");
-                    return;
                 }
                 if(loadComplete){
                     prestigeList.add(prestige);

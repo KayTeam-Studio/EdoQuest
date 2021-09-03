@@ -27,8 +27,8 @@ public class EdoQuestInventory extends InventoryBuilder {
         addItem(12, () -> Yaml.replace(inventories.getItemStack("edoQuest.items.prestigies")));
         addLeftAction(12, (player, slot) -> plugin.getInventoryManager().openInventory(player, new PrestigiesInventory(plugin, player, 1)));
         // Quest Complete Settings
-        addItem(13, () -> inventories.getItemStack("edoQuest.items.questCompleteSettings"));
-        addLeftAction(13, (player, i) -> plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin)));
+        addItem(14, () -> inventories.getItemStack("edoQuest.items.questCompleteSettings"));
+        addLeftAction(14, (player, i) -> plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin)));
     }
 
 }

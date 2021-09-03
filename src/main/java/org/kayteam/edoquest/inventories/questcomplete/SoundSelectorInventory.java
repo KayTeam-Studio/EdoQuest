@@ -8,7 +8,7 @@ import org.kayteam.kayteamapi.yaml.Yaml;
 public class SoundSelectorInventory extends InventoryBuilder {
 
     public SoundSelectorInventory(EdoQuest plugin, int page) {
-        super(plugin.getInventories().getString(".title"), 6);
+        super(plugin.getInventories().getString("questComplete.soundSelector.title"), 6);
         Yaml inventories = plugin.getInventories();
         for (int i = 0; i < 9; i++) addItem(i, () -> inventories.getItemStack("questComplete.soundSelector.panel"));
         for (int i = 46; i < 53; i++) addItem(i, () -> inventories.getItemStack("questComplete.soundSelector.panel"));
@@ -32,12 +32,12 @@ public class SoundSelectorInventory extends InventoryBuilder {
                 addRightAction(i, (player, slot) -> player.playSound(player.getLocation(), sounds[index], 1, 1));
             }
         }
-        // Previous Page :D
+        // PreviousPage
         if (page > 1) {
             addItem(45, () -> inventories.getItemStack("questComplete.soundSelector.previousPage"));
             addLeftAction(45, (player, i) -> plugin.getInventoryManager().openInventory(player, new SoundSelectorInventory(plugin,page - 1)));
         }
-        // Next Page :D
+        // NextPage
         if (sounds.length > (page * (4 * 9))) {
             addItem(53, () -> inventories.getItemStack("questComplete.soundSelector.nextPage"));
             addLeftAction(53, (player, i) -> plugin.getInventoryManager().openInventory(player, new SoundSelectorInventory(plugin, page + 1)));

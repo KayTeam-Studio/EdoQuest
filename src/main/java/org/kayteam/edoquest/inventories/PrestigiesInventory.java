@@ -2,6 +2,7 @@ package org.kayteam.edoquest.inventories;
 
 import org.bukkit.entity.Player;
 import org.kayteam.edoquest.EdoQuest;
+import org.kayteam.edoquest.inventories.questcomplete.SoundSelectorInventory;
 import org.kayteam.edoquest.prestige.Prestige;
 import org.kayteam.kayteamapi.input.inputs.ChatInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
@@ -16,8 +17,7 @@ public class PrestigiesInventory extends InventoryBuilder {
         final int page1 = page;
         Yaml inventories = plugin.getInventories();
         for (int i = 1; i < 8; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
-        for (int i = 46; i < 49; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
-        for (int i = 50; i < 53; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
+        for (int i = 45; i < 54; i++) addItem(i, () -> inventories.getItemStack("prestigeRankSelector.items.panel"));
         // Return
         addItem(0, () -> inventories.getItemStack("prestigies.items.return"));
         addLeftAction(0, (player1, slot) -> plugin.getInventoryManager().openInventory(player1, new EdoQuestInventory(plugin)));
@@ -59,13 +59,6 @@ public class PrestigiesInventory extends InventoryBuilder {
                 });
             }
         }
-        // Previous Page
-        addItem(45, () -> inventories.getItemStack("prestigies.items.previousPage"));
-        addLeftAction(45, ((player1, i) -> {
-            if (page1 > 1) {
-                plugin.getInventoryManager().openInventory(player, new PrestigiesInventory(plugin, player, page1 - 1));
-            }
-        }));
         // createPrestige
         addItem(49, () -> inventories.getItemStack("prestigies.items.createPrestige"));
         addLeftAction(49, ((player1, i) -> {
@@ -101,14 +94,16 @@ public class PrestigiesInventory extends InventoryBuilder {
                 }
             });
         }));
-        // Next Page
-        addItem(53, () -> inventories.getItemStack("prestigies.items.nextPage"));
-        addLeftAction(53, ((player1, i) -> {
-            int amount = page1 * (4 * 9);
-            if (prestigies.size() > amount) {
-                plugin.getInventoryManager().openInventory(player, new PrestigiesInventory(plugin, player, page1 + 1));
-            }
-        }));
+        // PreviousPage
+        if (page > 1) {
+            addItem(45, () -> inventories.getItemStack("prestigies.items.previousPage"));
+            addLeftAction(45, (player1, i) -> plugin.getInventoryManager().openInventory(player, new PrestigiesInventory(plugin, player,page - 1)));
+        }
+        // NextPage
+        if (prestigies.size() > (page * (4 * 9))) {
+            addItem(53, () -> inventories.getItemStack("prestigies.items.nextPage"));
+            addLeftAction(53, (player1, i) -> plugin.getInventoryManager().openInventory(player, new PrestigiesInventory(plugin, player, page1 + 1)));
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 placeholders:
-  maxPrestigeReached: "&7Max rank reached"
-  defaultPrestigeDisplayName: "&7None"
+  maxPrestigeReached: "max"
+  noPrestige: "nothing"
 questComplete:
   sound:
     enabled: true

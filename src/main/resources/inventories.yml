@@ -1,26 +1,48 @@
+placeholdersapi:
+  inventoryTitle: "PlaceholdersAPI Settings"
+  panel:
+    material: GRAY_STAINED_GLASS_PANE
+  return:
+    material: ARROW
+    name: "&3Return"
+  close:
+    material: BARRIER
+    name: "&3Close"
+  maxPrestigeReached:
+    material: AS
+    name: "&3Max Prestige Reached Text"
+    lore:
+      - "&6"
+      - "&6Current Text&e: %text%"
+      - "&6"
+      - "&7Left Click to change"
+  noPrestige:
+    material: AS
+    name: "&3No Prestige Text"
+    lore:
+      - "&6"
+      - "&6Current Text&e: %text%"
+      - "&6"
+      - "&7Left Click to change"
 edoQuest:
-  title: "EdoQuest Management"
-  items:
-    panel:
-      material: GRAY_STAINED_GLASS_PANE
-    close:
-      material: BARRIER
-      name: "&3Close"
-    reload:
-      material: REDSTONE_BLOCK
-      name: "&3Reload"
-    prestigies:
-      material: CHEST
-      name: "&3Prestigies"
-      lore:
-        - "&6"
-        - "&7Left Click to open"
-    questCompleteSettings:
-      material: CHEST
-      name: "&3Quest Complete Settings"
-      lore:
-        - "&6"
-        - "&7Left Click to open"
+  inventoryTitle: "EdoQuest Management"
+  panel:
+    material: GRAY_STAINED_GLASS_PANE
+  close:
+    material: BARRIER
+    name: "&3Close"
+  prestigies:
+    material: CHEST
+    name: "&3Prestigies"
+  questCompleteSettings:
+    material: CHEST
+    name: "&3Quest Complete Settings"
+  reload:
+    material: REDSTONE_BLOCK
+    name: "&3Reload"
+  placeholdersSettings:
+    material: CHEST
+    name: "&3PlaceholdersAPI Settings"
 questComplete:
   settings:
     inventoryTitle: "Quest Complete Settings"
@@ -159,8 +181,37 @@ questComplete:
       material: ARROW
       name: "&3Next Page"
 prestigies:
-  title: "Prestigies"
-  items:
+  inventoryTitle: "Prestigies"
+  panel:
+    material: GRAY_STAINED_GLASS_PANE
+  return:
+    material: ARROW
+    name: "&3Return"
+  close:
+    material: BARRIER
+    name: "&3Close"
+  prestige:
+    material: PAPER
+    name: "%name%"
+    lore:
+      - "&6"
+      - "&6Position&e: &f%position%"
+      - "&6"
+      - "&7Left Shift Click to edit"
+      - "&7Left Click to move left"
+      - "&7Right Click to move right"
+  createPrestige:
+    material: PAPER
+    name: "&3Create Prestige"
+  previousPage:
+    material: ARROW
+    name: "&3Previous Page"
+  nextPage:
+    material: ARROW
+    name: "&3Next Page"
+prestige:
+  commands:
+    inventoryTitle: "Commands Editor"
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
@@ -169,28 +220,26 @@ prestigies:
     close:
       material: BARRIER
       name: "&3Close"
-    prestige:
-      material: PAPER
-      name: "%name%"
+    command:
+      material: COMMAND_BLOCK
+      name: "&f%command%"
       lore:
         - "&6"
-        - "&6Position&e: &f%position%"
-        - "&6"
-        - "&7Left Shift Click to edit"
         - "&7Left Click to move left"
-        - "&7Right Click to move right"
+        - "&7Left Click to move right"
+        - "&7Left Shift Click to edit"
+        - "&7Left Shift Click to delete"
+    addCommand:
+      material: COMMAND_BLOCK
+      name: "&3Add Command"
     previousPage:
       material: ARROW
       name: "&3Previous Page"
     nextPage:
       material: ARROW
       name: "&3Next Page"
-    createPrestige:
-      material: PAPER
-      name: "&3Create Prestige"
-prestigeEditor:
-  title: "Prestige Editor"
-  items:
+  editor:
+    inventoryTitle: "Prestige Editor"
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
@@ -205,30 +254,27 @@ prestigeEditor:
       lore:
         - "&6"
         - "&7Left Click to close"
-    delete:
-      material: REDSTONE_BLOCK
-      name: "&3Delete"
-      lore:
-        - "&6"
-        - "&7Left Shift Click to delete"
     displayName:
       material: PAPER
       name: "&3DisplayName"
       lore:
         - "&6"
         - "&6Current&3: %displayName%"
-    prestigeRank:
-      material: PAPER
-      name: "&3Rank to Prestige"
+    commands:
+      material: COMMAND_BLOCK
+      name: "&3Commands"
       lore:
         - "&6"
-        - "&6Rank&3: &3%prestigeRank%"
-    requirementRank:
-      material: PAPER
-      name: "&3Rank Requirement"
+        - "&7Left Click to edit"
     requirementKills:
       material: PAPER
       name: "&3Kills Requirements"
+    delete:
+      material: REDSTONE_BLOCK
+      name: "&3Delete"
+      lore:
+        - "&6"
+        - "&7Left Shift Click to delete"
 prestigeRankSelector:
   title: "Rank Selector"
   items:
@@ -256,66 +302,52 @@ prestigeRankSelector:
       material: ARROW
       name: "&3Next Page"
 killsRequirement:
-  title: "Kills Requirement"
-  items:
-    panel:
-      material: GRAY_STAINED_GLASS_PANE
-    return:
-      material: ARROW
-      name: "&3Return"
-      lore:
-        - "&6"
-        - "&7Left Click to return"
-    close:
-      material: BARRIER
-      name: "&3Close"
-      lore:
-        - "&6"
-        - "&7Left Click to close"
-    entity:
-      material: PAPER
-      name: "&f%entityType%"
-      lore:
-        - "&6"
-        - "&6Kills Amount&e: &f%killsAmount%"
-        - "&6"
-        - "&7Left Click to change kills amount"
-        - "&7Right Click to remove"
-    previousPage:
-      material: ARROW
-      name: "&3Previous Page"
-    addEntity:
-      material: PAPER
-      name: "&3Add Entity"
-    nextPage:
-      material: ARROW
-      name: "&3Next Page"
+  inventoryTitle: "Kills Requirement"
+  panel:
+    material: GRAY_STAINED_GLASS_PANE
+  return:
+    material: ARROW
+    name: "&3Return"
+  close:
+    material: BARRIER
+    name: "&3Close"
+  entity:
+    material: PAPER
+    name: "&f%entityType%"
+    lore:
+      - "&6"
+      - "&6Kills Amount&e: &f%killsAmount%"
+      - "&6"
+      - "&7Left Click to change kills amount"
+      - "&7Right Click to remove"
+  addEntity:
+    material: PAPER
+    name: "&3Add Entity"
+  previousPage:
+    material: ARROW
+    name: "&3Previous Page"
+  nextPage:
+    material: ARROW
+    name: "&3Next Page"
 entityChoose:
-  title: "Entity Selector"
-  items:
-    panel:
-      material: GRAY_STAINED_GLASS_PANE
-    return:
-      material: ARROW
-      name: "&3Return"
-      lore:
-        - "&6"
-        - "&7Left Click to return"
-    close:
-      material: BARRIER
-      name: "&3Close"
-      lore:
-        - "&6"
-        - "&7Left Click to close"
-    entity:
-      material: PAPER
-      name: "&f%entityType%"
-      lore:
-        - "&6"
-        - "&7Left Click to select"
-    previousPage:
-      material: ARROW
-      name: "&3Previous Page"
-    nextPage:
-      material: ARROW
-      name: "&3Next Page"
+  inventoryTitle: "Entity Selector"
+  panel:
+    material: GRAY_STAINED_GLASS_PANE
+  return:
+    material: ARROW
+    name: "&3Return"
+  close:
+    material: BARRIER
+    name: "&3Close"
+  entity:
+    material: PAPER
+    name: "&f%entityType%"
+    lore:
+      - "&6"
+      - "&7Left Click to select"
+  previousPage:
+    material: ARROW
+    name: "&3Previous Page"
+  nextPage:
+    material: ARROW
+    name: "&3Next Page"

@@ -2,7 +2,6 @@ package org.kayteam.edoquest.inventories.questcomplete;
 
 import org.bukkit.entity.Player;
 import org.kayteam.edoquest.EdoQuest;
-import org.kayteam.edoquest.inventories.PrestigeEditorInventory;
 import org.kayteam.kayteamapi.input.inputs.ChatInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
@@ -18,7 +17,7 @@ public class MessagesEditorInventory extends InventoryBuilder {
         for (int i = 45; i < 54; i++) addItem(i, () -> inventories.getItemStack("questComplete.messagesEditor.panel"));
         // Return
         addItem(0, () -> inventories.getItemStack("questComplete.messagesEditor.return"));
-        addLeftAction(0, (player, i) -> plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin)));
+        addLeftAction(0, (player, i) -> plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin)));
         // Close
         addItem(8, () -> inventories.getItemStack("questComplete.messagesEditor.close"));
         addLeftAction(8, (player, i) -> player.closeInventory());

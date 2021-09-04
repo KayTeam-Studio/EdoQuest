@@ -1,12 +1,14 @@
 prefix: "&6&lEdo&e&lQuest"
 edoQuest:
   noPermission: "%prefix% &fYou don't have permission."
-prestigies:
-  createPrestige:
-    input: "%prefix% &fInput the name in the chat, to cancel press SHIFT."
-    containSpace: "%prefix% &fThe name contain spaces. Try again!"
-    tooLong: "%prefix% &fThe name is too long. Try again!"
-    alreadyExist: "%prefix% &fThe prestige &3%name%&f already exist. Try again!"
+createPrestige:
+  inputName: "%prefix% &fInput the name in the chat. Press SHIFT to cancel."
+  containSpace: "%prefix% &fThe name contain spaces. Try again!"
+  tooLong: "%prefix% &fThe name is too long. Try again!"
+  alreadyExist: "%prefix% &fThe prestige &3%name%&f already exist. Try again!"
+placeholdersapi:
+  inputMaxPrestigeReachedText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
+  inputNoPrestigeText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
 prestigeEditor:
   displayName:
     input: "%prefix% &fInput the display-name in the chat, to cancel press SHIFT."
@@ -18,3 +20,9 @@ questComplete:
   titleTextInput: "%prefix% &fInput in the chat the new title, to cancel press SHIFT."
   titleSubTextInput: "%prefix% &fInput in the chat the new sub title, to cancel press SHIFT."
   messageInput: "%prefix% &fInput in the chat the message what you want to add, to cancel press SHIFT."
+prestige:
+  editor:
+
+  commands:
+    commandAddInput: "%prefix% &fInput in the chat the command without slash to add. Press SHIFT to cancel."
+    commandEditInput: "%prefix% &fInput in the chat the command without slash to edit. Press SHIFT to cancel."

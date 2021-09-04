@@ -8,9 +8,9 @@ import org.kayteam.kayteamapi.input.inputs.ChatInput;
 import org.kayteam.kayteamapi.inventory.InventoryBuilder;
 import org.kayteam.kayteamapi.yaml.Yaml;
 
-public class SettingsInventory extends InventoryBuilder {
+public class QuestCompleteSettingsInventory extends InventoryBuilder {
 
-    public SettingsInventory(EdoQuest plugin) {
+    public QuestCompleteSettingsInventory(EdoQuest plugin) {
         super(plugin.getInventories().getString("questComplete.settings.inventoryTitle"), 6);
         Yaml inventories = plugin.getInventories();
         fillItem(() -> inventories.getItemStack("questComplete.settings.panel"));
@@ -34,7 +34,7 @@ public class SettingsInventory extends InventoryBuilder {
                 plugin.getSettings().set("questComplete.sound.enabled", true);
                 plugin.getSettings().saveFileConfiguration();
             }
-            plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+            plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin));
         });
         // Sound Selector
         addItem(22, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.sound"),
@@ -64,7 +64,7 @@ public class SettingsInventory extends InventoryBuilder {
                 plugin.getSettings().set("questComplete.title.enabled", true);
                 plugin.getSettings().saveFileConfiguration();
             }
-            plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+            plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin));
         });
         // TitleText
         addItem(21, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.titleText"),
@@ -77,12 +77,12 @@ public class SettingsInventory extends InventoryBuilder {
                 public boolean onChatInput(Player player, String input) {
                     plugin.getSettings().set("questComplete.title.text", input);
                     plugin.getSettings().saveFileConfiguration();
-                    plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+                    plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin));
                     return true;
                 }
 
                 @Override
-                public void onPlayerSneak(Player player) { plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin)); }
+                public void onPlayerSneak(Player player) { plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin)); }
             });
         });
         // TitleSubText
@@ -96,12 +96,12 @@ public class SettingsInventory extends InventoryBuilder {
                 public boolean onChatInput(Player player, String input) {
                     plugin.getSettings().set("questComplete.title.subText", input);
                     plugin.getSettings().saveFileConfiguration();
-                    plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+                    plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin));
                     return true;
                 }
 
                 @Override
-                public void onPlayerSneak(Player player) { plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin)); }
+                public void onPlayerSneak(Player player) { plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin)); }
             });
         });
         // MessageEnabled
@@ -118,7 +118,7 @@ public class SettingsInventory extends InventoryBuilder {
                 plugin.getSettings().set("questComplete.messages.enabled", true);
                 plugin.getSettings().saveFileConfiguration();
             }
-            plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+            plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin));
         });
         // Messages Edit Menu
         addItem(23, () -> Yaml.replace(inventories.getItemStack("questComplete.settings.messages"),

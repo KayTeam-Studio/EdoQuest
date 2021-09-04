@@ -14,7 +14,7 @@ public class SoundSelectorInventory extends InventoryBuilder {
         for (int i = 46; i < 53; i++) addItem(i, () -> inventories.getItemStack("questComplete.soundSelector.panel"));
         // Return
         addItem(0, () -> inventories.getItemStack("questComplete.soundSelector.return"));
-        addLeftAction(0, (player, i) -> plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin)));
+        addLeftAction(0, (player, i) -> plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin)));
         // Close
         addItem(8, () -> inventories.getItemStack("questComplete.soundSelector.close"));
         addLeftAction(8, (player, i) -> player.closeInventory());
@@ -27,7 +27,7 @@ public class SoundSelectorInventory extends InventoryBuilder {
                 addLeftAction(i, (player, slot) -> {
                     plugin.getSettings().set("questComplete.sound", sounds[index].toString());
                     plugin.getSettings().saveFileConfiguration();
-                    plugin.getInventoryManager().openInventory(player, new SettingsInventory(plugin));
+                    plugin.getInventoryManager().openInventory(player, new QuestCompleteSettingsInventory(plugin));
                 });
                 addRightAction(i, (player, slot) -> player.playSound(player.getLocation(), sounds[index], 1, 1));
             }

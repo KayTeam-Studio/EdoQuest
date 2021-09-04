@@ -112,6 +112,15 @@ public class PrestigeManager {
                     loadComplete = false;
                     plugin.getLogger().log(Level.SEVERE, "Prestige " + name + " missing requirements.kills path, please add this to correct enable of that prestige.");
                 }
+                if (prestigies.contains(name + ".commands")) {
+                    if (prestigies.isList(name + ".commands")) {
+                        List<String> commands = prestigies.getFileConfiguration().getStringList(name + ".commands");
+                        prestige.setCommands(commands);
+                    }
+                } else {
+                    loadComplete = false;
+                    plugin.getLogger().log(Level.SEVERE, "Prestige " + name + " missing commands path, please add this to correct enable of that prestige.");
+                }
                 if(loadComplete){
                     prestigeList.add(prestige);
                     plugin.getLogger().info("Prestige " + name + " has been loaded correctly.");
@@ -191,6 +200,7 @@ public class PrestigeManager {
             kills.add(entityType.name() + ":" + prestige.getKillsRequirement().getAmount(entityType));
         }
         prestigies.set(name + ".requirements.kills", kills);
+        prestigies.set(name + ".commands", prestige.getCommands());
         prestigies.saveFileConfiguration();
         unloadPlayersData();
         loadPlayersData();

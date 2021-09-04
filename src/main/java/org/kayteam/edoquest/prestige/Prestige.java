@@ -3,6 +3,9 @@ package org.kayteam.edoquest.prestige;
 import org.jetbrains.annotations.NotNull;
 import org.kayteam.edoquest.prestige.requirement.KillsRequirement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Prestige implements Comparable<Prestige> {
 
     private final String name;
@@ -10,6 +13,7 @@ public class Prestige implements Comparable<Prestige> {
     private String displayName = "";
     private String prestigeRank = "";
     private final KillsRequirement killsRequirement = new KillsRequirement();
+    private List<String> commands = new ArrayList<>();
 
     public Prestige(String name) {
         this.name = name;
@@ -42,6 +46,13 @@ public class Prestige implements Comparable<Prestige> {
 
     public KillsRequirement getKillsRequirement() {
         return killsRequirement;
+    }
+
+    public void setCommands(List<String> commands) {
+        this.commands = commands;
+    }
+    public List<String> getCommands() {
+        return commands;
     }
 
     @Override

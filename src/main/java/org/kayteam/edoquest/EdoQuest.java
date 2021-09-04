@@ -74,10 +74,6 @@ public final class EdoQuest extends JavaPlugin {
         BrandSender.sendBrandMessage(this, "&cDisabled");
     }
 
-    public void onReload() {
-
-    }
-
     private void registerFiles() {
         settings.registerFileConfiguration();
         messages.registerFileConfiguration();

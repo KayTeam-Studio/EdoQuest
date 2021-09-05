@@ -1,4 +1,4 @@
-placeholdersapi:
+placeholderapi:
   inventoryTitle: "PlaceholderAPI Settings"
   panel:
     material: GRAY_STAINED_GLASS_PANE
@@ -128,7 +128,7 @@ questComplete:
         - "&6"
         - "&7Left Click to change"
   soundSelector:
-    title: "Sound Selector"
+    inventoryTitle: "Sound Selector"
     panel:
       material: GRAY_STAINED_GLASS_PANE
     return:
@@ -148,7 +148,7 @@ questComplete:
       material: ARROW
       name: "&3Previous Page"
     nextPage:
-      materrial: ARROW
+      material: ARROW
       name: "&3Next Page"
   messagesEditor:
     title: "Messages Editor"

@@ -1,5 +1,5 @@
 placeholdersapi:
-  inventoryTitle: "PlaceholdersAPI Settings"
+  inventoryTitle: "PlaceholderAPI Settings"
   panel:
     material: GRAY_STAINED_GLASS_PANE
   return:
@@ -9,7 +9,7 @@ placeholdersapi:
     material: BARRIER
     name: "&3Close"
   maxPrestigeReached:
-    material: AS
+    material: PAPER
     name: "&3Max Prestige Reached Text"
     lore:
       - "&6"
@@ -17,7 +17,7 @@ placeholdersapi:
       - "&6"
       - "&7Left Click to change"
   noPrestige:
-    material: AS
+    material: PAPER
     name: "&3No Prestige Text"
     lore:
       - "&6"

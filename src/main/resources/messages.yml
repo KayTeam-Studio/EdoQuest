@@ -6,7 +6,7 @@ createPrestige:
   containSpace: "%prefix% &fThe name contain spaces. Try again!"
   tooLong: "%prefix% &fThe name is too long. Try again!"
   alreadyExist: "%prefix% &fThe prestige &3%name%&f already exist. Try again!"
-placeholdersapi:
+placeholderapi:
   inputMaxPrestigeReachedText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
   inputNoPrestigeText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
 prestigeEditor:

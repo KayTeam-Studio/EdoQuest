@@ -90,7 +90,7 @@ public class PlaceholdersAPISettingsInventory extends InventoryBuilder {
         });
 
         // Unlocked Status
-        addItem(30, () -> Yaml.replace(inventories.getItemStack("placeholderapi.unlockedStatus"), new String[][] {
+        addItem(32, () -> Yaml.replace(inventories.getItemStack("placeholderapi.unlockedStatus"), new String[][] {
                 {"%text%", settings.getString("placeholders.prestigeStatus.unlocked")}
         }));
         addLeftAction(32, (player, slot) -> {

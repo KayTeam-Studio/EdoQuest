@@ -2,6 +2,7 @@ package org.kayteam.edoquest.placeholderapi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Statistic;
 import org.bukkit.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
 import org.kayteam.edoquest.EdoQuest;
@@ -52,10 +53,14 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
                 ArrayList<Prestige> prestiges = new ArrayList<>(plugin.getPrestigeManager().getPrestigiesMap().values());
                 Prestige prestige = plugin.getPrestigeManager().getPrestige(params.split("_")[2]);
                 Prestige playerPrestige = plugin.getPrestigeManager().getPlayerPrestige(player.getPlayer());
-                if(prestiges.indexOf(prestige) <= prestiges.indexOf(playerPrestige)){
-                    return settings.getString("placeholders.prestigeStatus.unlocked");
+                if(prestige != null){
+                    if(prestiges.indexOf(prestige) <= prestiges.indexOf(playerPrestige)){
+                        return settings.getString("placeholders.prestigeStatus.unlocked");
+                    }else{
+                        return settings.getString("placeholders.prestigeStatus.locked");
+                    }
                 }else{
-                    return settings.getString("placeholders.prestigeStatus.locked");
+                    return "&cError.";
                 }
             }catch (Exception e){
                 return "&cError.";
@@ -65,7 +70,7 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
                 Prestige prestige = plugin.getPrestigeManager().getPrestige(params.split("_")[2]);
                 int entityIndex = Integer.parseInt(params.split("_")[1]);
                 EntityType entityType = prestige.getKillsRequirement().getEntities().get(entityIndex);
-                return (entityType.getName()+": "+prestige.getKillsRequirement().getAmount(entityType));
+                return (entityType.toString()+": "+player.getPlayer().getStatistic(Statistic.KILL_ENTITY, entityType)+"/"+prestige.getKillsRequirement().getAmount(entityType));
             }catch (Exception e){
                 return "&cError.";
             }

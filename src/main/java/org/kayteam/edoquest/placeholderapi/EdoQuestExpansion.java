@@ -76,7 +76,7 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
                 }catch (Exception e){
                     return "&cError.";
                 }
-            case "prestige_name":
+            case "prestige_display":
                 try{
                     Prestige prestige = prestigeManager.getPlayerPrestige(player.getPlayer());
                     if(prestige != null){
@@ -87,7 +87,7 @@ public class EdoQuestExpansion extends PlaceholderExpansion {
                 }catch (Exception e){
                     return "&cError.";
                 }
-            case "prestige":
+            case "prestige_name":
                 try{
                     Prestige prestige = prestigeManager.getPlayerPrestige(player.getPlayer());
                     if(prestige != null){

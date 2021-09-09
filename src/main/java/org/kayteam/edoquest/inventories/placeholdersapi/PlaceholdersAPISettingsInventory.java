@@ -10,25 +10,25 @@ import org.kayteam.kayteamapi.yaml.Yaml;
 public class PlaceholdersAPISettingsInventory extends InventoryBuilder {
 
     public PlaceholdersAPISettingsInventory(EdoQuest plugin) {
-        super(plugin.getInventories().getString("placeholdersapi.inventoryTitle"), 6);
+        super(plugin.getInventories().getString("placeholderapi.inventoryTitle"), 6);
         Yaml settings = plugin.getSettings();
         Yaml messages = plugin.getMessages();
         Yaml inventories = plugin.getInventories();
         // Panel
-        fillItem(() -> inventories.getItemStack("placeholdersapi.panel"));
+        fillItem(() -> inventories.getItemStack("placeholderapi.panel"));
         // Return
-        addItem(0, () -> inventories.getItemStack("placeholdersapi.return"));
+        addItem(0, () -> inventories.getItemStack("placeholderapi.return"));
         addLeftAction(0, (player, slot) -> plugin.getInventoryManager().openInventory(player, new EdoQuestInventory(plugin)));
         // Close
-        addItem(8, () -> inventories.getItemStack("placeholdersapi.close"));
+        addItem(8, () -> inventories.getItemStack("placeholderapi.close"));
         addLeftAction(8, (player, slot) -> player.closeInventory());
         // Max Prestige Reached
-        addItem(12, () -> Yaml.replace(inventories.getItemStack("placeholdersapi.maxPrestigeReached"), new String[][] {
+        addItem(12, () -> Yaml.replace(inventories.getItemStack("placeholderapi.maxPrestigeReached"), new String[][] {
                 {"%text%", settings.getString("placeholders.maxPrestigeReached")}
         }));
         addLeftAction(12, (player, slot) -> {
             player.closeInventory();
-            messages.sendMessage(player, "placeholdersapi.inputMaxPrestigeReachedText");
+            messages.sendMessage(player, "placeholderapi.inputMaxPrestigeReachedText");
             plugin.getInputManager().addInput(player, new ChatInput() {
                 @Override
                 public boolean onChatInput(Player player, String input) {
@@ -45,12 +45,12 @@ public class PlaceholdersAPISettingsInventory extends InventoryBuilder {
             });
         });
         // No Prestige
-        addItem(14, () -> Yaml.replace(inventories.getItemStack("placeholdersapi.noPrestige"), new String[][] {
+        addItem(14, () -> Yaml.replace(inventories.getItemStack("placeholderapi.noPrestige"), new String[][] {
                 {"%text%", settings.getString("placeholders.noPrestige")}
         }));
         addLeftAction(14, (player, slot) -> {
             player.closeInventory();
-            messages.sendMessage(player, "placeholdersapi.inputNoPrestigeText");
+            messages.sendMessage(player, "placeholderapi.inputNoPrestigeText");
             plugin.getInputManager().addInput(player, new ChatInput() {
                 @Override
                 public boolean onChatInput(Player player, String input) {

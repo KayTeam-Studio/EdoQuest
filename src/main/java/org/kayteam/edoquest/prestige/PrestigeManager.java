@@ -175,10 +175,12 @@ public class PrestigeManager {
     }
 
     public void deletePrestige(String name) {
+        Prestige prestige = getPrestige(name);
         Yaml prestigies = plugin.getPrestigies();
         prestigies.set(name, null);
         prestigies.saveFileConfiguration();
         this.prestigies.remove(name);
+        prestigeList.remove(prestige);
     }
 
     public void saveAll() {

@@ -1,6 +1,9 @@
 placeholders:
   maxPrestigeReached: "&7&lMax"
   noPrestige: "&7&lNothing"
+  prestigeStatus:
+    locked: "&cLocked"
+    unlocked: "&aUnlocked"
 questComplete:
   sound:
     enabled: true

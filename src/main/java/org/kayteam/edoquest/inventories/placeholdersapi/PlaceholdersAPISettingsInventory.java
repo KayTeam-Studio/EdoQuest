@@ -66,6 +66,51 @@ public class PlaceholdersAPISettingsInventory extends InventoryBuilder {
                 }
             });
         });
+        // Locked Status
+        addItem(30, () -> Yaml.replace(inventories.getItemStack("placeholderapi.lockedStatus"), new String[][] {
+                {"%text%", settings.getString("placeholders.prestigeStatus.locked")}
+        }));
+        addLeftAction(30, (player, slot) -> {
+            player.closeInventory();
+            messages.sendMessage(player, "placeholderapi.inputLockedPrestigeText");
+            plugin.getInputManager().addInput(player, new ChatInput() {
+                @Override
+                public boolean onChatInput(Player player, String input) {
+                    settings.set("placeholders.prestigeStatus.locked", input);
+                    settings.saveFileConfiguration();
+                    plugin.getInventoryManager().openInventory(player, new PlaceholdersAPISettingsInventory(plugin));
+                    return true;
+                }
+
+                @Override
+                public void onPlayerSneak(Player player) {
+                    plugin.getInventoryManager().openInventory(player, new PlaceholdersAPISettingsInventory(plugin));
+                }
+            });
+        });
+
+        // Unlocked Status
+        addItem(30, () -> Yaml.replace(inventories.getItemStack("placeholderapi.unlockedStatus"), new String[][] {
+                {"%text%", settings.getString("placeholders.prestigeStatus.unlocked")}
+        }));
+        addLeftAction(32, (player, slot) -> {
+            player.closeInventory();
+            messages.sendMessage(player, "placeholderapi.inputUnlockedPrestigeText");
+            plugin.getInputManager().addInput(player, new ChatInput() {
+                @Override
+                public boolean onChatInput(Player player, String input) {
+                    settings.set("placeholders.prestigeStatus.unlocked", input);
+                    settings.saveFileConfiguration();
+                    plugin.getInventoryManager().openInventory(player, new PlaceholdersAPISettingsInventory(plugin));
+                    return true;
+                }
+
+                @Override
+                public void onPlayerSneak(Player player) {
+                    plugin.getInventoryManager().openInventory(player, new PlaceholdersAPISettingsInventory(plugin));
+                }
+            });
+        });
     }
 
 }

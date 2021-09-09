@@ -8,6 +8,22 @@ placeholderapi:
   close:
     material: BARRIER
     name: "&3Close"
+  lockedStatus:
+    material: RED_WOOL
+    name: "&3Prestige Locked Text"
+    lore:
+      - "&6"
+      - "&6Current Text&e: %text%"
+      - "&6"
+      - "&7Left Click to change"
+  unlockedStatus:
+    material: LIME_WOOL
+    name: "&3Prestige Unlocked Text"
+    lore:
+      - "&6"
+      - "&6Current Text&e: %text%"
+      - "&6"
+      - "&7Left Click to change"
   maxPrestigeReached:
     material: PAPER
     name: "&3Max Prestige Reached Text"

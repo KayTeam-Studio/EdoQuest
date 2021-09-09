@@ -55,6 +55,11 @@ public class PrestigeManager {
         loadPlayersData();
     }
 
+    public void unloadPrestiges(){
+        prestigies.clear();
+        prestigeList.clear();
+    }
+
     public void loadPrestigies() {
         Yaml prestigies = plugin.getPrestigies();
         Set<String> names = prestigies.getFileConfiguration().getKeys(false);
@@ -212,7 +217,7 @@ public class PrestigeManager {
         return new ArrayList<>(this.prestigies.keySet());
     }
 
-    public HashMap<String, Prestige> getPrestigiesMap(){
+    public LinkedHashMap<String, Prestige> getPrestigiesMap(){
         return prestigies;
     }
 

@@ -9,6 +9,8 @@ createPrestige:
 placeholderapi:
   inputMaxPrestigeReachedText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
   inputNoPrestigeText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
+  inputLockedPrestigeText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
+  inputUnlockedPrestigeText: "%prefix% &fInput in the chat the text. Press SHIFT to cancel."
 prestigeEditor:
   displayName:
     input: "%prefix% &fInput the display-name in the chat, to cancel press SHIFT."

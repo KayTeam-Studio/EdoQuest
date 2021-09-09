@@ -74,6 +74,17 @@ public final class EdoQuest extends JavaPlugin {
         BrandSender.sendBrandMessage(this, "&cDisabled");
     }
 
+    public void onReload(){
+        messages.reloadFileConfiguration();
+        settings.reloadFileConfiguration();
+        inventories.reloadFileConfiguration();
+        prestigies.reloadFileConfiguration();
+        prestigeManager.unloadPrestiges();
+        prestigeManager.loadPrestigies();
+        prestigeManager.unloadPlayersData();
+        prestigeManager.loadPlayersData();
+    }
+
     private void registerFiles() {
         settings.registerFileConfiguration();
         messages.registerFileConfiguration();
